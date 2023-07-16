@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>865316383953-6sccqibcdrt7ps7t6lk6sd9juthakg1u.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.865316383953-6sccqibcdrt7ps7t6lk6sd9juthakg1u</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDwki-D_5GefrWMyMwFqY_EMfcf42ls3Ko</string>
+	<key>GCM_SENDER_ID</key>
+	<string>865316383953</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.workoutProgram</string>
+	<key>PROJECT_ID</key>
+	<string>workout-96459</string>
+	<key>STORAGE_BUCKET</key>
+	<string>workout-96459.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:865316383953:ios:b27db21c14017d612069f0</string>
+</dict>
+</plist>
