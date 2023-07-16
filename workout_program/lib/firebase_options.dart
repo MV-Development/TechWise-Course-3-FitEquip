@@ -44,14 +44,14 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyCSjQYKfT1ykaF7aeLBTmE_-nInidLWF2M',
-    appId: '1:865316383953:web:e302418f06b215c42069f0',
-    messagingSenderId: '865316383953',
-    projectId: 'workout-96459',
-    authDomain: 'workout-96459.firebaseapp.com',
-    storageBucket: 'workout-96459.appspot.com',
-    measurementId: 'G-7VM8BFE5WB',
-  );
+      apiKey: 'AIzaSyCSjQYKfT1ykaF7aeLBTmE_-nInidLWF2M',
+      appId: '1:865316383953:web:e302418f06b215c42069f0',
+      messagingSenderId: '865316383953',
+      projectId: 'workout-96459',
+      authDomain: 'workout-96459.firebaseapp.com',
+      storageBucket: 'workout-96459.appspot.com',
+      measurementId: 'G-7VM8BFE5WB',
+      databaseURL: 'https://workout-96459-default-rtdb.firebaseio.com/');
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyBJi2x9F0k31HFzPx2A2kDiqXrjFou5NMI',
@@ -67,7 +67,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '865316383953',
     projectId: 'workout-96459',
     storageBucket: 'workout-96459.appspot.com',
-    iosClientId: '865316383953-6sccqibcdrt7ps7t6lk6sd9juthakg1u.apps.googleusercontent.com',
+    iosClientId:
+        '865316383953-6sccqibcdrt7ps7t6lk6sd9juthakg1u.apps.googleusercontent.com',
     iosBundleId: 'com.example.workoutProgram',
   );
 
@@ -77,7 +78,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '865316383953',
     projectId: 'workout-96459',
     storageBucket: 'workout-96459.appspot.com',
-    iosClientId: '865316383953-fp1627i878ilrlah7bp0vb6tn9e8tf57.apps.googleusercontent.com',
+    iosClientId:
+        '865316383953-fp1627i878ilrlah7bp0vb6tn9e8tf57.apps.googleusercontent.com',
     iosBundleId: 'com.example.workoutProgram.RunnerTests',
   );
 }

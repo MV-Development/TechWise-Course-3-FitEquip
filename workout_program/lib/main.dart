@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
+import 'package:firebase_database/firebase_database.dart';
+
+FirebaseDatabase database = FirebaseDatabase.instance;
+DatabaseReference ref = database.ref('workouts');
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -61,6 +65,16 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  getData(String code) async {
+    final snapshot = await ref.child(code).get();
+    if (snapshot.exists) {
+      print(snapshot.value);
+    }
+  }
+
+  String dropdownvalue = 'Legs';
+  var items = ['Legs', 'Arms', 'Back', 'Shoulders'];
+
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -99,18 +113,26 @@ class _MyHomePageState extends State<MyHomePage> {
 
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Padding(
-                padding: EdgeInsets.only(left: 500.0, right: 500.0),
-                child: TextField(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: 'Enter a workout',
-                  ),
-                )),
+            Padding(
+                padding: const EdgeInsets.only(left: 500.0, right: 500.0),
+                child: DropdownButton(
+                    value: dropdownvalue,
+                    items: items.map((String items) {
+                      return DropdownMenuItem(
+                        value: items,
+                        child: Text(items),
+                      );
+                    }).toList(),
+                    onChanged: (String? newValue) {
+                      setState(() {
+                        dropdownvalue = newValue!;
+                      });
+                    })),
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
                 // ignore: avoid_print
+                getData(dropdownvalue.toLowerCase());
                 print('button pressed!');
               },
               child: const Text('Next'),
