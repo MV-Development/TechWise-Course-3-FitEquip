@@ -93,7 +93,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Padding(
+            const Padding(
                 padding: EdgeInsets.only(left: 500.0, right: 500.0),
                 child: TextField(
                   decoration: InputDecoration(
@@ -101,12 +101,12 @@ class _MyHomePageState extends State<MyHomePage> {
                     hintText: 'Enter a workout',
                   ),
                 )),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
                 print('button pressed!');
               },
-              child: Text('Next'),
+              child: const Text('Next'),
             ),
           ],
         ),
