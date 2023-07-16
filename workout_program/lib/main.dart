@@ -65,10 +65,13 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  var text = 'Exercise';
   getData(String code) async {
     final snapshot = await ref.child(code).get();
     if (snapshot.exists) {
-      print(snapshot.value);
+      setState(() {
+        text = snapshot.value.toString();
+      });
     }
   }
 
@@ -137,6 +140,7 @@ class _MyHomePageState extends State<MyHomePage> {
               },
               child: const Text('Next'),
             ),
+            Text(text, style: const TextStyle(fontSize: 14))
           ],
         ),
       ),
