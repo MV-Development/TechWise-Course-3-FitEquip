@@ -104,6 +104,7 @@ class _MyHomePageState extends State<MyHomePage> {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
+                // ignore: avoid_print
                 print('button pressed!');
               },
               child: const Text('Next'),
