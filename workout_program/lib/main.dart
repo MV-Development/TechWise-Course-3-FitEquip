@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
-import 'package:firebase_database/firebase_database.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-FirebaseDatabase database = FirebaseDatabase.instance;
-DatabaseReference ref = database.ref('workouts');
+FirebaseFirestore firestore = FirebaseFirestore.instance;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -41,11 +40,14 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   var text = 'Exercise';
-  getData(String code) async {
-    final snapshot = await ref.child(code).get();
-    if (snapshot.exists) {
+  CollectionReference woList =
+      FirebaseFirestore.instance.collection('workouts');
+  getData(code) async {
+    DocumentSnapshot dSnapshot =
+        await firestore.collection('workouts').doc('workouts').get();
+    if (dSnapshot.exists) {
       setState(() {
-        text = snapshot.value.toString();
+        text = dSnapshot[code].toString();
       });
     }
   }
