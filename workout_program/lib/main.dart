@@ -23,6 +23,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
+        scaffoldBackgroundColor: Colors.deepPurple,
       ),
       home: const MyHomePage(title: 'FitEquip'),
     );
@@ -72,26 +73,10 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Column exerciseList() {
-    return Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          DropdownButton(
-              value: dropdownvalue,
-              items: items.map((String items) {
-                return DropdownMenuItem(
-                  value: items,
-                  child: Text(items),
-                );
-              }).toList(),
-              onChanged: (String? newValue) {
-                setState(() {
-                  dropdownvalue = newValue!;
-                });
-              }),
-          const SizedBox(height: 20),
-          selectExercise(),
-          Text(text, style: const TextStyle(fontSize: 14)),
-        ]);
+    return Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+      Image.asset('assets/Rectangle.png'),
+      Image.asset('assets/Rectangle.png')
+    ]);
   }
 
   Column equipList() {
