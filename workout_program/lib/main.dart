@@ -45,6 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
       FirebaseFirestore.instance.collection('workouts');
   final muscleList = <String>[];
   final equipList = <String>[];
+
   getData(code) async {
     DocumentSnapshot dSnapshot =
         await firestore.collection('workouts').doc('workouts').get();
@@ -75,42 +76,74 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Column exerciseList() {
+    final buttonsSelect = List<int>.filled(4, 0);
     return Column(mainAxisAlignment: MainAxisAlignment.center, children: [
       Row(
         children: [
-          TextButton(
-              onPressed: () {
-                muscleList.add('arms');
-                print(muscleList);
-              },
-              child: Image.asset('assets/Rectangle.png')),
-          Image.asset('assets/Rectangle.png'),
-          Image.asset('assets/Rectangle.png'),
-          Image.asset('assets/Rectangle.png')
-        ],
-      ),
-      Row(
-        children: [
-          Image.asset('assets/Rectangle.png'),
-          Image.asset('assets/Rectangle.png'),
-          Image.asset('assets/Rectangle.png'),
-          Image.asset('assets/Rectangle.png')
-        ],
-      ),
-      Row(
-        children: [
-          Image.asset('assets/Rectangle.png'),
-          Image.asset('assets/Rectangle.png'),
-          Image.asset('assets/Rectangle.png'),
-          Image.asset('assets/Rectangle.png')
-        ],
-      ),
-      Row(
-        children: [
-          Image.asset('assets/Rectangle.png'),
-          Image.asset('assets/Rectangle.png'),
-          Image.asset('assets/Rectangle.png'),
-          Image.asset('assets/Rectangle.png')
+          Column(children: [
+            TextButton(
+                onPressed: () {
+                  if (buttonsSelect[0] == 0) {
+                    muscleList.add('arms');
+                    print(muscleList);
+                    buttonsSelect[0] = 1;
+                  } else {
+                    buttonsSelect[0] = 0;
+                    muscleList.removeWhere((item) => item == 'arms');
+                    print(muscleList);
+                  }
+                },
+                child: Image.asset('assets/Rectangle.png')),
+            const Text("Arms"),
+          ]),
+          Column(children: [
+            TextButton(
+                onPressed: () {
+                  if (buttonsSelect[1] == 0) {
+                    muscleList.add('legs');
+                    print(muscleList);
+                    buttonsSelect[1] = 1;
+                  } else {
+                    buttonsSelect[1] = 0;
+                    muscleList.removeWhere((item) => item == 'legs');
+                    print(muscleList);
+                  }
+                },
+                child: Image.asset('assets/Rectangle.png')),
+            const Text("Legs"),
+          ]),
+          Column(children: [
+            TextButton(
+                onPressed: () {
+                  if (buttonsSelect[2] == 0) {
+                    muscleList.add('shoulders');
+                    print(muscleList);
+                    buttonsSelect[2] = 1;
+                  } else {
+                    buttonsSelect[2] = 0;
+                    muscleList.removeWhere((item) => item == 'shoulders');
+                    print(muscleList);
+                  }
+                },
+                child: Image.asset('assets/Rectangle.png')),
+            const Text("Shoulders"),
+          ]),
+          Column(children: [
+            TextButton(
+                onPressed: () {
+                  if (buttonsSelect[3] == 0) {
+                    muscleList.add('abs');
+                    print(muscleList);
+                    buttonsSelect[3] = 1;
+                  } else {
+                    buttonsSelect[3] = 0;
+                    muscleList.removeWhere((item) => item == 'abs');
+                    print(muscleList);
+                  }
+                },
+                child: Image.asset('assets/Rectangle.png')),
+            const Text("Abs"),
+          ]),
         ],
       )
     ]);
