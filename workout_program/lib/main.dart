@@ -43,6 +43,8 @@ class _MyHomePageState extends State<MyHomePage> {
   var text = 'Exercise';
   CollectionReference woList =
       FirebaseFirestore.instance.collection('workouts');
+  final muscleList = <String>[];
+  final equipList = <String>[];
   getData(code) async {
     DocumentSnapshot dSnapshot =
         await firestore.collection('workouts').doc('workouts').get();
@@ -67,40 +69,75 @@ class _MyHomePageState extends State<MyHomePage> {
         body: Center(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [exerciseList(), equipList()],
+            children: [exerciseList()],
           ),
         ));
   }
 
   Column exerciseList() {
     return Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-      Image.asset('assets/Rectangle.png'),
-      Image.asset('assets/Rectangle.png')
+      Row(
+        children: [
+          TextButton(
+              onPressed: () {
+                muscleList.add('arms');
+                print(muscleList);
+              },
+              child: Image.asset('assets/Rectangle.png')),
+          Image.asset('assets/Rectangle.png'),
+          Image.asset('assets/Rectangle.png'),
+          Image.asset('assets/Rectangle.png')
+        ],
+      ),
+      Row(
+        children: [
+          Image.asset('assets/Rectangle.png'),
+          Image.asset('assets/Rectangle.png'),
+          Image.asset('assets/Rectangle.png'),
+          Image.asset('assets/Rectangle.png')
+        ],
+      ),
+      Row(
+        children: [
+          Image.asset('assets/Rectangle.png'),
+          Image.asset('assets/Rectangle.png'),
+          Image.asset('assets/Rectangle.png'),
+          Image.asset('assets/Rectangle.png')
+        ],
+      ),
+      Row(
+        children: [
+          Image.asset('assets/Rectangle.png'),
+          Image.asset('assets/Rectangle.png'),
+          Image.asset('assets/Rectangle.png'),
+          Image.asset('assets/Rectangle.png')
+        ],
+      )
     ]);
   }
 
-  Column equipList() {
-    return Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          DropdownButton(
-              value: dropdownvalue,
-              items: items.map((String items) {
-                return DropdownMenuItem(
-                  value: items,
-                  child: Text(items),
-                );
-              }).toList(),
-              onChanged: (String? newValue) {
-                setState(() {
-                  dropdownvalue = newValue!;
-                });
-              }),
-          const SizedBox(height: 20),
-          selectExercise(),
-          Text(text, style: const TextStyle(fontSize: 14)),
-        ]);
-  }
+  // Column equipList() {
+  //   return Column(
+  //       mainAxisAlignment: MainAxisAlignment.center,
+  //       children: <Widget>[
+  //         DropdownButton(
+  //             value: dropdownvalue,
+  //             items: items.map((String items) {
+  //               return DropdownMenuItem(
+  //                 value: items,
+  //                 child: Text(items),
+  //               );
+  //             }).toList(),
+  //             onChanged: (String? newValue) {
+  //               setState(() {
+  //                 dropdownvalue = newValue!;
+  //               });
+  //             }),
+  //         const SizedBox(height: 20),
+  //         selectExercise(),
+  //         Text(text, style: const TextStyle(fontSize: 14)),
+  //       ]);
+  // }
 
   ElevatedButton selectExercise() {
     return ElevatedButton(
