@@ -23,6 +23,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
+        scaffoldBackgroundColor: Colors.deepPurple,
       ),
       home: const MyHomePage(title: 'FitEquip'),
     );
@@ -42,6 +43,9 @@ class _MyHomePageState extends State<MyHomePage> {
   var text = 'Exercise';
   CollectionReference woList =
       FirebaseFirestore.instance.collection('workouts');
+  final muscleList = <String>[];
+  final equipList = <String>[];
+
   getData(code) async {
     DocumentSnapshot dSnapshot =
         await firestore.collection('workouts').doc('workouts').get();
@@ -66,56 +70,107 @@ class _MyHomePageState extends State<MyHomePage> {
         body: Center(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [exerciseList(), equipList()],
+            children: [exerciseList()],
           ),
         ));
   }
 
   Column exerciseList() {
-    return Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          DropdownButton(
-              value: dropdownvalue,
-              items: items.map((String items) {
-                return DropdownMenuItem(
-                  value: items,
-                  child: Text(items),
-                );
-              }).toList(),
-              onChanged: (String? newValue) {
-                setState(() {
-                  dropdownvalue = newValue!;
-                });
-              }),
-          const SizedBox(height: 20),
-          selectExercise(),
-          Text(text, style: const TextStyle(fontSize: 14)),
-        ]);
+    final buttonsSelect = List<int>.filled(4, 0);
+    return Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+      Row(
+        children: [
+          Column(children: [
+            TextButton(
+                onPressed: () {
+                  if (buttonsSelect[0] == 0) {
+                    muscleList.add('arms');
+                    print(muscleList);
+                    buttonsSelect[0] = 1;
+                  } else {
+                    buttonsSelect[0] = 0;
+                    muscleList.removeWhere((item) => item == 'arms');
+                    print(muscleList);
+                  }
+                },
+                child: Image.asset('assets/Rectangle.png')),
+            const Text("Arms"),
+          ]),
+          Column(children: [
+            TextButton(
+                onPressed: () {
+                  if (buttonsSelect[1] == 0) {
+                    muscleList.add('legs');
+                    print(muscleList);
+                    buttonsSelect[1] = 1;
+                  } else {
+                    buttonsSelect[1] = 0;
+                    muscleList.removeWhere((item) => item == 'legs');
+                    print(muscleList);
+                  }
+                },
+                child: Image.asset('assets/Rectangle.png')),
+            const Text("Legs"),
+          ]),
+          Column(children: [
+            TextButton(
+                onPressed: () {
+                  if (buttonsSelect[2] == 0) {
+                    muscleList.add('shoulders');
+                    print(muscleList);
+                    buttonsSelect[2] = 1;
+                  } else {
+                    buttonsSelect[2] = 0;
+                    muscleList.removeWhere((item) => item == 'shoulders');
+                    print(muscleList);
+                  }
+                },
+                child: Image.asset('assets/Rectangle.png')),
+            const Text("Shoulders"),
+          ]),
+          Column(children: [
+            TextButton(
+                onPressed: () {
+                  if (buttonsSelect[3] == 0) {
+                    muscleList.add('abs');
+                    print(muscleList);
+                    buttonsSelect[3] = 1;
+                  } else {
+                    buttonsSelect[3] = 0;
+                    muscleList.removeWhere((item) => item == 'abs');
+                    print(muscleList);
+                  }
+                },
+                child: Image.asset('assets/Rectangle.png')),
+            const Text("Abs"),
+          ]),
+        ],
+      )
+    ]);
   }
 
-  Column equipList() {
-    return Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          DropdownButton(
-              value: dropdownvalue,
-              items: items.map((String items) {
-                return DropdownMenuItem(
-                  value: items,
-                  child: Text(items),
-                );
-              }).toList(),
-              onChanged: (String? newValue) {
-                setState(() {
-                  dropdownvalue = newValue!;
-                });
-              }),
-          const SizedBox(height: 20),
-          selectExercise(),
-          Text(text, style: const TextStyle(fontSize: 14)),
-        ]);
-  }
+  // Column equipList() {
+  //   return Column(
+  //       mainAxisAlignment: MainAxisAlignment.center,
+  //       children: <Widget>[
+  //         DropdownButton(
+  //             value: dropdownvalue,
+  //             items: items.map((String items) {
+  //               return DropdownMenuItem(
+  //                 value: items,
+  //                 child: Text(items),
+  //               );
+  //             }).toList(),
+  //             onChanged: (String? newValue) {
+  //               setState(() {
+  //                 dropdownvalue = newValue!;
+  //               });
+  //             }),
+  //         const SizedBox(height: 20),
+  //         selectExercise(),
+  //         Text(text, style: const TextStyle(fontSize: 14)),
+  //       ]);
+  // }
 
   ElevatedButton selectExercise() {
     return ElevatedButton(
