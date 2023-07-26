@@ -82,21 +82,32 @@ class _MyHomePageState extends State<MyHomePage> {
       children: [
         Row(
           children: [
-            muscleGroupIcons('assets/muscleGroups/arms.png', 'Arms', buttonsSelect, 0),
-            muscleGroupIcons('assets/muscleGroups/legs_quads.png', 'Legs', buttonsSelect, 1),
-            muscleGroupIcons('assets/muscleGroups/shoulders.png', 'Shoulders', buttonsSelect, 2),
-            muscleGroupIcons('assets/muscleGroups/core.png', 'Abs', buttonsSelect, 3),
+            muscleGroupIcons(
+                'assets/muscleGroups/arms.png', 'Arms', buttonsSelect, 0),
+            muscleGroupIcons(
+                'assets/muscleGroups/legs_quads.png', 'Legs', buttonsSelect, 1),
+            muscleGroupIcons('assets/muscleGroups/shoulders.png', 'Shoulders',
+                buttonsSelect, 2),
+            muscleGroupIcons(
+                'assets/muscleGroups/core.png', 'Abs', buttonsSelect, 3),
           ],
         ),
       ],
     );
   }
 
-  Widget muscleGroupIcons(String imagePath, String label, List<int> buttonsSelect, int index) {
+  Widget muscleGroupIcons(
+      String imagePath, String label, List<int> buttonsSelect, int index) {
     return Column(
       children: [
         Stack(
           children: [
+            Positioned.fill(
+              child: Align(
+                alignment: Alignment.center,
+                child: Image.asset('assets/Rectangle.png'),
+              ),
+            ),
             TextButton(
               onPressed: () {
                 if (buttonsSelect[index] == 0) {
@@ -109,13 +120,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   print(muscleList);
                 }
               },
-              child: Image.asset('assets/Rectangle.png'),
-            ),
-            Positioned.fill(
-              child: Align(
-                alignment: Alignment.center,
-                child: Image.asset(imagePath, height: 100, width: 100),
-              ),
+              child: Image.asset(imagePath, height: 100, width: 100),
             ),
           ],
         ),
