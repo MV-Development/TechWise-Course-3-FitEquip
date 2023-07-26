@@ -77,100 +77,52 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Column exerciseList() {
     final buttonsSelect = List<int>.filled(4, 0);
-    return Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-      Row(
-        children: [
-          Column(children: [
-            TextButton(
-                onPressed: () {
-                  if (buttonsSelect[0] == 0) {
-                    muscleList.add('arms');
-                    print(muscleList);
-                    buttonsSelect[0] = 1;
-                  } else {
-                    buttonsSelect[0] = 0;
-                    muscleList.removeWhere((item) => item == 'arms');
-                    print(muscleList);
-                  }
-                },
-                child: Image.asset('assets/Rectangle.png')),
-            const Text("Arms"),
-          ]),
-          Column(children: [
-            TextButton(
-                onPressed: () {
-                  if (buttonsSelect[1] == 0) {
-                    muscleList.add('legs');
-                    print(muscleList);
-                    buttonsSelect[1] = 1;
-                  } else {
-                    buttonsSelect[1] = 0;
-                    muscleList.removeWhere((item) => item == 'legs');
-                    print(muscleList);
-                  }
-                },
-                child: Image.asset('assets/Rectangle.png')),
-            const Text("Legs"),
-          ]),
-          Column(children: [
-            TextButton(
-                onPressed: () {
-                  if (buttonsSelect[2] == 0) {
-                    muscleList.add('shoulders');
-                    print(muscleList);
-                    buttonsSelect[2] = 1;
-                  } else {
-                    buttonsSelect[2] = 0;
-                    muscleList.removeWhere((item) => item == 'shoulders');
-                    print(muscleList);
-                  }
-                },
-                child: Image.asset('assets/Rectangle.png')),
-            const Text("Shoulders"),
-          ]),
-          Column(children: [
-            TextButton(
-                onPressed: () {
-                  if (buttonsSelect[3] == 0) {
-                    muscleList.add('abs');
-                    print(muscleList);
-                    buttonsSelect[3] = 1;
-                  } else {
-                    buttonsSelect[3] = 0;
-                    muscleList.removeWhere((item) => item == 'abs');
-                    print(muscleList);
-                  }
-                },
-                child: Image.asset('assets/Rectangle.png')),
-            const Text("Abs"),
-          ]),
-        ],
-      )
-    ]);
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Row(
+          children: [
+            muscleGroupIcons('assets/abRoller.png', 'Arms', buttonsSelect, 0),
+            muscleGroupIcons('assets/abRoller.png', 'Legs', buttonsSelect, 1),
+            muscleGroupIcons('assets/dumbbells.png', 'Shoulders', buttonsSelect, 2),
+            muscleGroupIcons('assets/latPulldown.png', 'Abs', buttonsSelect, 3),
+          ],
+        ),
+      ],
+    );
   }
 
-  // Column equipList() {
-  //   return Column(
-  //       mainAxisAlignment: MainAxisAlignment.center,
-  //       children: <Widget>[
-  //         DropdownButton(
-  //             value: dropdownvalue,
-  //             items: items.map((String items) {
-  //               return DropdownMenuItem(
-  //                 value: items,
-  //                 child: Text(items),
-  //               );
-  //             }).toList(),
-  //             onChanged: (String? newValue) {
-  //               setState(() {
-  //                 dropdownvalue = newValue!;
-  //               });
-  //             }),
-  //         const SizedBox(height: 20),
-  //         selectExercise(),
-  //         Text(text, style: const TextStyle(fontSize: 14)),
-  //       ]);
-  // }
+  Widget muscleGroupIcons(String imagePath, String label, List<int> buttonsSelect, int index) {
+    return Column(
+      children: [
+        Stack(
+          children: [
+            TextButton(
+              onPressed: () {
+                if (buttonsSelect[index] == 0) {
+                  muscleList.add(label.toLowerCase());
+                  print(muscleList);
+                  buttonsSelect[index] = 1;
+                } else {
+                  buttonsSelect[index] = 0;
+                  muscleList.removeWhere((item) => item == label.toLowerCase());
+                  print(muscleList);
+                }
+              },
+              child: Image.asset('assets/Rectangle.png'),
+            ),
+            Positioned.fill(
+              child: Align(
+                alignment: Alignment.center,
+                child: Image.asset(imagePath, height: 100, width: 100),
+              ),
+            ),
+          ],
+        ),
+        Text(label),
+      ],
+    );
+  }
 
   ElevatedButton selectExercise() {
     return ElevatedButton(
