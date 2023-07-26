@@ -70,6 +70,7 @@ flutter:
       - assets/equipment/abRoller.png
       - assets/equipment/dumbbells.png
       - assets/equipment/latPulldown.png
+      # ALL MUSCLE GROUP ICONS: From Noun Project by Chris Wilmes (CC BY 3.0)
       - assets/muscleGroups/arms.png
       - assets/muscleGroups/legs_glutesHamstring.png
       - assets/muscleGroups/legs_quads.png
