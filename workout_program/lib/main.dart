@@ -82,10 +82,10 @@ class _MyHomePageState extends State<MyHomePage> {
       children: [
         Row(
           children: [
-            muscleGroupIcons('assets/equipment/abRoller.png', 'Arms', buttonsSelect, 0),
-            muscleGroupIcons('assets/equipment/abRoller.png', 'Legs', buttonsSelect, 1),
-            muscleGroupIcons('assets/equipment/dumbbells.png', 'Shoulders', buttonsSelect, 2),
-            muscleGroupIcons('assets/equipment/latPulldown.png', 'Abs', buttonsSelect, 3),
+            muscleGroupIcons('assets/muscleGroups/arms.png', 'Arms', buttonsSelect, 0),
+            muscleGroupIcons('assets/muscleGroups/legs_quads.png', 'Legs', buttonsSelect, 1),
+            muscleGroupIcons('assets/muscleGroups/shoulders.png', 'Shoulders', buttonsSelect, 2),
+            muscleGroupIcons('assets/muscleGroups/core.png', 'Abs', buttonsSelect, 3),
           ],
         ),
       ],
