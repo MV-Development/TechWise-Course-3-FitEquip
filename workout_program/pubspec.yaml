@@ -67,9 +67,16 @@ flutter:
   assets:
       - assets/FitEquipLogo.png
       - assets/Rectangle.png
-      - assets/abRoller.png
-      - assets/dumbbells.png
-      - assets/latPulldown.png
+      - assets/equipment/abRoller.png
+      - assets/equipment/dumbbells.png
+      - assets/equipment/latPulldown.png
+      - assets/muscleGroups/arms.png
+      - assets/muscleGroups/legs_glutesHamstring.png
+      - assets/muscleGroups/legs_quads.png
+      - assets/muscleGroups/shoulders.png
+      - assets/muscleGroups/back.png
+      - assets/muscleGroups/chest.png
+      - assets/muscleGroups/core.png
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
