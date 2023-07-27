@@ -165,7 +165,7 @@ class _EquipSelect extends State<EquipSelect> {
           children: [
             Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [exerciseList()]),
+                children: [exerciseList(), toExercises()]),
           ],
         )));
   }
