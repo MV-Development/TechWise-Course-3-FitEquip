@@ -8,7 +8,7 @@ final muscleList = <String>[];
 final buttonsSelect = List<int>.filled(4, 0);
 final equipList = <String>[];
 final equipChoice = List<int>.filled(4, 0);
-final exerciseList = <String>[];
+Set<String> exerciseList = {};
 final equipColorList = List.filled(4, Colors.white);
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -140,7 +140,7 @@ class _PartSelectState extends State<PartSelect> {
             context, MaterialPageRoute(builder: (context) => EquipSelect()));
         print('button pressed!');
 //**************************************************************************
-        mikeTestingFirebase();
+        getMuscleMovements();
 //**************************************************************************
       },
       child: const Text('Next'),
@@ -234,9 +234,6 @@ class _EquipSelect extends State<EquipSelect> {
         //Navigator.push(
         //   context, MaterialPageRoute(builder: (context) => EquipSelect()));
         print('button pressed!');
-//**************************************************************************
-        mikeTestingFirebase();
-//**************************************************************************
       },
       child: const Text('Next'),
     );
@@ -249,23 +246,27 @@ class _EquipSelect extends State<EquipSelect> {
 
 //    DocumentSnapshot dSnapshot =
 //        await firestore.collection('workouts').doc('workouts').get();
+/*
+getExercises() {
+  if (hasEquipment() && isNewExercise()) {
+    exerciseList.add();
+  }
+}
 
-getExercises(userMuscles, userEquipment) {}
-
-hasEquipment(exerciseEquipment, userEquipment) {
-  return userEquipment.contains(exerciseEquipment);
+hasEquipment(exerciseEquipment) {
+  return equipList.contains(exerciseEquipment);
 }
 
 isNewExercise(newExercise) {
-  return exerciseList.contains(newExercise);
+  return !exerciseList.contains(newExercise);
 }
-
-mikeTestingFirebase() {
+*/
+getMuscleMovements() {
   for (var muscle in muscleList) {
     firestore.collection(muscle).get().then(
       (querySnapshot) {
-        for (var docSnapshot in querySnapshot.docs) {
-          print('//*${docSnapshot.id} =>*/ ${docSnapshot.data()}');
+        for (var doc in querySnapshot.docs) {
+          print(/*'${doc.id} =>*/ '${doc.data()}');
         }
       },
       onError: (e) => print("Error completing: $e"),
