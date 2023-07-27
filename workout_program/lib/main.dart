@@ -8,6 +8,7 @@ final muscleList = <String>[];
 final buttonsSelect = List<int>.filled(4, 0);
 final equipList = <String>[];
 final equipChoice = List<int>.filled(4, 0);
+final exerciseList = <String>[];
 final equipColorList = List.filled(4, Colors.white);
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -117,44 +118,10 @@ class _PartSelectState extends State<PartSelect> {
                   muscleList.add(label.toLowerCase());
                   print(muscleList);
                   buttonsSelect[index] = 1;
-//********************************************************************* */
-                  for (var muscle in muscleList) {
-                    firestore.collection(muscle).get().then(
-                      (querySnapshot) {
-                        for (var docSnapshot in querySnapshot.docs) {
-                          print(
-                              '//*${docSnapshot.id} =>*/ ${docSnapshot.data()}');
-                        }
-                      },
-                      onError: (e) => print("Error completing: $e"),
-                    );
-                  }
-
-//********************************************************************* */
-                  setState(() {
-                    colorList[index] = Colors.pink;
-                  });
                 } else {
                   buttonsSelect[index] = 0;
                   muscleList.removeWhere((item) => item == label.toLowerCase());
                   print(muscleList);
-//********************************************************************* */
-                  for (var muscle in muscleList) {
-                    firestore.collection(muscle).get().then(
-                      (querySnapshot) {
-                        for (var docSnapshot in querySnapshot.docs) {
-                          print(
-                              '//*${docSnapshot.id} =>*/ ${docSnapshot.data()}');
-                        }
-                      },
-                      onError: (e) => print("Error completing: $e"),
-                    );
-                  }
-
-//********************************************************************* */
-                  setState(() {
-                    colorList[index] = Colors.white;
-                  });
                 }
               },
               child: Image.asset(imagePath, height: 100, width: 100),
@@ -172,6 +139,9 @@ class _PartSelectState extends State<PartSelect> {
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => EquipSelect()));
         print('button pressed!');
+//**************************************************************************
+        mikeTestingFirebase();
+//**************************************************************************
       },
       child: const Text('Next'),
     );
@@ -257,6 +227,20 @@ class _EquipSelect extends State<EquipSelect> {
       ],
     );
   }
+
+  ElevatedButton toExercises() {
+    return ElevatedButton(
+      onPressed: () {
+        //Navigator.push(
+        //   context, MaterialPageRoute(builder: (context) => EquipSelect()));
+        print('button pressed!');
+//**************************************************************************
+        mikeTestingFirebase();
+//**************************************************************************
+      },
+      child: const Text('Next'),
+    );
+  }
 }
 
 //***************************************************************************/
@@ -266,22 +250,25 @@ class _EquipSelect extends State<EquipSelect> {
 //    DocumentSnapshot dSnapshot =
 //        await firestore.collection('workouts').doc('workouts').get();
 
-getExercises(userMuscles, userEquipment) {
-  Set<String> exercises = {};
-  for (var muscle in userMuscles) {
-    CollectionReference exerciseList =
-        FirebaseFirestore.instance.collection(muscle);
+getExercises(userMuscles, userEquipment) {}
 
-    if (hasEquipment(exerciseList, userEquipment)) {}
+hasEquipment(exerciseEquipment, userEquipment) {
+  return userEquipment.contains(exerciseEquipment);
+}
+
+isNewExercise(newExercise) {
+  return exerciseList.contains(newExercise);
+}
+
+mikeTestingFirebase() {
+  for (var muscle in muscleList) {
+    firestore.collection(muscle).get().then(
+      (querySnapshot) {
+        for (var docSnapshot in querySnapshot.docs) {
+          print('//*${docSnapshot.id} =>*/ ${docSnapshot.data()}');
+        }
+      },
+      onError: (e) => print("Error completing: $e"),
+    );
   }
-
-  return exercises;
-}
-
-hasEquipment(exerciseList, userEquipment) {
-  for (final doc in exerciseList) {}
-}
-
-isNewExercise(exercises, newExercise) {
-  return exercises.contains(newExercise);
 }
