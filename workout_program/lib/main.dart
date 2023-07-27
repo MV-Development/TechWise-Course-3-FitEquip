@@ -118,10 +118,16 @@ class _PartSelectState extends State<PartSelect> {
                   muscleList.add(label.toLowerCase());
                   print(muscleList);
                   buttonsSelect[index] = 1;
+                  setState(() {
+                    colorList[index] = Colors.pink;
+                  });
                 } else {
                   buttonsSelect[index] = 0;
                   muscleList.removeWhere((item) => item == label.toLowerCase());
                   print(muscleList);
+                  setState(() {
+                    colorList[index] = Colors.white;
+                  });
                 }
               },
               child: Image.asset(imagePath, height: 100, width: 100),
