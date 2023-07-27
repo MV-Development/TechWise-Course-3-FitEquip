@@ -117,6 +117,20 @@ class _MyHomePageState extends State<MyHomePage> {
                   muscleList.add(label.toLowerCase());
                   print(muscleList);
                   buttonsSelect[index] = 1;
+//********************************************************************* */
+                  for (var muscle in muscleList) {
+                    firestore.collection(muscle).get().then(
+                      (querySnapshot) {
+                        for (var docSnapshot in querySnapshot.docs) {
+                          print(
+                              '//*${docSnapshot.id} =>*/ ${docSnapshot.data()}');
+                        }
+                      },
+                      onError: (e) => print("Error completing: $e"),
+                    );
+                  }
+
+//********************************************************************* */
                   setState(() {
                     colorList[index] = Colors.pink;
                   });
@@ -124,6 +138,20 @@ class _MyHomePageState extends State<MyHomePage> {
                   buttonsSelect[index] = 0;
                   muscleList.removeWhere((item) => item == label.toLowerCase());
                   print(muscleList);
+//********************************************************************* */
+                  for (var muscle in muscleList) {
+                    firestore.collection(muscle).get().then(
+                      (querySnapshot) {
+                        for (var docSnapshot in querySnapshot.docs) {
+                          print(
+                              '//*${docSnapshot.id} =>*/ ${docSnapshot.data()}');
+                        }
+                      },
+                      onError: (e) => print("Error completing: $e"),
+                    );
+                  }
+
+//********************************************************************* */
                   setState(() {
                     colorList[index] = Colors.white;
                   });
@@ -229,4 +257,31 @@ class _EquipSelect extends State<EquipSelect> {
       ],
     );
   }
+}
+
+//***************************************************************************/
+//  CollectionReference woList =
+//      FirebaseFirestore.instance.collection('workouts');
+
+//    DocumentSnapshot dSnapshot =
+//        await firestore.collection('workouts').doc('workouts').get();
+
+getExercises(userMuscles, userEquipment) {
+  Set<String> exercises = {};
+  for (var muscle in userMuscles) {
+    CollectionReference exerciseList =
+        FirebaseFirestore.instance.collection(muscle);
+
+    if (hasEquipment(exerciseList, userEquipment)) {}
+  }
+
+  return exercises;
+}
+
+hasEquipment(exerciseList, userEquipment) {
+  for (final doc in exerciseList) {}
+}
+
+isNewExercise(exercises, newExercise) {
+  return exercises.contains(newExercise);
 }
