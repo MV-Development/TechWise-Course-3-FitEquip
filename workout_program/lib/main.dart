@@ -181,7 +181,7 @@ class _PartSelectState extends State<PartSelect> {
 class EquipSelect extends StatefulWidget {
   const EquipSelect({super.key});
   @override
-  _EquipSelect createState() => _EquipSelect();
+  State<EquipSelect> createState() => _EquipSelect();
 }
 
 class _EquipSelect extends State<EquipSelect> {
