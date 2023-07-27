@@ -14,11 +14,11 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const MyApp());
+  runApp(const FitEquip());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class FitEquip extends StatelessWidget {
+  const FitEquip({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -29,21 +29,21 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         scaffoldBackgroundColor: Colors.deepPurple,
       ),
-      home: const MyHomePage(title: 'FitEquip'),
+      home: const PartSelect(title: 'FitEquip'),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+class PartSelect extends StatefulWidget {
+  const PartSelect({super.key, required this.title});
 
   final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<PartSelect> createState() => _PartSelectState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _PartSelectState extends State<PartSelect> {
   var text = 'Exercise';
   final colorList = List.filled(4, Colors.white);
   CollectionReference woList =
