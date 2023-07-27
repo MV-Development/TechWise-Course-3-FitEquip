@@ -8,6 +8,7 @@ final muscleList = <String>[];
 final buttonsSelect = List<int>.filled(4, 0);
 final equipList = <String>[];
 final equipChoice = List<int>.filled(4, 0);
+final equipColorList = List.filled(4, Colors.white);
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -44,6 +45,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   var text = 'Exercise';
+  final colorList = List.filled(4, Colors.white);
   CollectionReference woList =
       FirebaseFirestore.instance.collection('workouts');
 
@@ -84,13 +86,13 @@ class _MyHomePageState extends State<MyHomePage> {
         Row(
           children: [
             muscleGroupIcons(
-                'assets/muscleGroups/arms.png', 'Arms', buttonsSelect, 0),
+                'assets/muscleGroups/arms.png', 'Arms', 0, colorList[0]),
             muscleGroupIcons(
-                'assets/muscleGroups/legs_quads.png', 'Legs', buttonsSelect, 1),
+                'assets/muscleGroups/legs_quads.png', 'Legs', 1, colorList[1]),
             muscleGroupIcons('assets/muscleGroups/shoulders.png', 'Shoulders',
-                buttonsSelect, 2),
+                2, colorList[2]),
             muscleGroupIcons(
-                'assets/muscleGroups/core.png', 'Abs', buttonsSelect, 3),
+                'assets/muscleGroups/core.png', 'Abs', 3, colorList[3]),
           ],
         ),
       ],
@@ -98,7 +100,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget muscleGroupIcons(
-      String imagePath, String label, List<int> buttonsSelect, int index) {
+      String imagePath, String label, int index, var curColor) {
     return Column(
       children: [
         Stack(
@@ -106,7 +108,7 @@ class _MyHomePageState extends State<MyHomePage> {
             Positioned.fill(
               child: Align(
                 alignment: Alignment.center,
-                child: Image.asset('assets/Rectangle.png'),
+                child: Image.asset('assets/Rectangle.png', color: curColor),
               ),
             ),
             TextButton(
@@ -115,10 +117,16 @@ class _MyHomePageState extends State<MyHomePage> {
                   muscleList.add(label.toLowerCase());
                   print(muscleList);
                   buttonsSelect[index] = 1;
+                  setState(() {
+                    colorList[index] = Colors.pink;
+                  });
                 } else {
                   buttonsSelect[index] = 0;
                   muscleList.removeWhere((item) => item == label.toLowerCase());
                   print(muscleList);
+                  setState(() {
+                    colorList[index] = Colors.white;
+                  });
                 }
               },
               child: Image.asset(imagePath, height: 100, width: 100),
@@ -142,8 +150,13 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-class EquipSelect extends StatelessWidget {
+class EquipSelect extends StatefulWidget {
   const EquipSelect({super.key});
+  @override
+  _EquipSelect createState() => _EquipSelect();
+}
+
+class _EquipSelect extends State<EquipSelect> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -165,10 +178,12 @@ class EquipSelect extends StatelessWidget {
       children: [
         Row(
           children: [
-            equipmentIcons('assets/equipment/abRoller.png', 'Ab Roller', 0),
-            equipmentIcons('assets/equipment/dumbbells.png', 'Dumbbells', 1),
-            equipmentIcons(
-                'assets/equipment/latPulldown.png', 'Lat Pulldown', 2),
+            equipmentIcons('assets/equipment/abRoller.png', 'Ab Roller', 0,
+                equipColorList[0]),
+            equipmentIcons('assets/equipment/dumbbells.png', 'Dumbbells', 1,
+                equipColorList[1]),
+            equipmentIcons('assets/equipment/latPulldown.png', 'Lat Pulldown',
+                2, equipColorList[2]),
             //equipmentIcons('assets/equipment/abRoller', '', 3),
           ],
         ),
@@ -176,7 +191,8 @@ class EquipSelect extends StatelessWidget {
     );
   }
 
-  Widget equipmentIcons(String imagePath, String label, int index) {
+  Widget equipmentIcons(
+      String imagePath, String label, int index, var curColor) {
     return Column(
       children: [
         Stack(
@@ -184,7 +200,7 @@ class EquipSelect extends StatelessWidget {
             Positioned.fill(
               child: Align(
                 alignment: Alignment.center,
-                child: Image.asset('assets/Rectangle.png'),
+                child: Image.asset('assets/Rectangle.png', color: curColor),
               ),
             ),
             TextButton(
@@ -193,10 +209,16 @@ class EquipSelect extends StatelessWidget {
                   equipList.add(label.toLowerCase());
                   print(equipList);
                   equipChoice[index] = 1;
+                  setState(() {
+                    equipColorList[index] = Colors.pink;
+                  });
                 } else {
                   equipChoice[index] = 0;
                   equipList.removeWhere((item) => item == label.toLowerCase());
                   print(equipList);
+                  setState(() {
+                    equipColorList[index] = Colors.white;
+                  });
                 }
               },
               child: Image.asset(imagePath, height: 100, width: 100),
