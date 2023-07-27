@@ -4,7 +4,10 @@ import 'firebase_options.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 FirebaseFirestore firestore = FirebaseFirestore.instance;
-
+final muscleList = <String>[];
+final buttonsSelect = List<int>.filled(4, 0);
+final equipList = <String>[];
+final equipChoice = List<int>.filled(4, 0);
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -43,8 +46,6 @@ class _MyHomePageState extends State<MyHomePage> {
   var text = 'Exercise';
   CollectionReference woList =
       FirebaseFirestore.instance.collection('workouts');
-  final muscleList = <String>[];
-  final equipList = <String>[];
 
   getData(code) async {
     DocumentSnapshot dSnapshot =
@@ -56,9 +57,6 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
 
-  String dropdownvalue = 'Legs';
-  var items = ['Legs', 'Arms', 'Back', 'Shoulders'];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,15 +66,18 @@ class _MyHomePageState extends State<MyHomePage> {
           leading: Image.asset('assets/FitEquipLogo.png'),
         ),
         body: Center(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [exerciseList()],
-          ),
-        ));
+            child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [muscleSelect()]),
+            toEquip()
+          ],
+        )));
   }
 
-  Column exerciseList() {
-    final buttonsSelect = List<int>.filled(4, 0);
+  Column muscleSelect() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -157,13 +158,81 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  ElevatedButton selectExercise() {
+  ElevatedButton toEquip() {
     return ElevatedButton(
       onPressed: () {
-        getData(dropdownvalue.toLowerCase());
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => EquipSelect()));
         print('button pressed!');
       },
       child: const Text('Next'),
+    );
+  }
+}
+
+class EquipSelect extends StatelessWidget {
+  const EquipSelect({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(title: const Text('FitEquip')),
+        body: Center(
+            child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [exerciseList()]),
+          ],
+        )));
+  }
+
+  Column exerciseList() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Row(
+          children: [
+            equipmentIcons('assets/equipment/abRoller.png', 'Ab Roller', 0),
+            equipmentIcons('assets/equipment/dumbbells.png', 'Dumbbells', 1),
+            equipmentIcons(
+                'assets/equipment/latPulldown.png', 'Lat Pulldown', 2),
+            //equipmentIcons('assets/equipment/abRoller', '', 3),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget equipmentIcons(String imagePath, String label, int index) {
+    return Column(
+      children: [
+        Stack(
+          children: [
+            Positioned.fill(
+              child: Align(
+                alignment: Alignment.center,
+                child: Image.asset('assets/Rectangle.png'),
+              ),
+            ),
+            TextButton(
+              onPressed: () {
+                if (equipChoice[index] == 0) {
+                  equipList.add(label.toLowerCase());
+                  print(equipList);
+                  equipChoice[index] = 1;
+                } else {
+                  equipChoice[index] = 0;
+                  equipList.removeWhere((item) => item == label.toLowerCase());
+                  print(equipList);
+                }
+              },
+              child: Image.asset(imagePath, height: 100, width: 100),
+            ),
+          ],
+        ),
+        Text(label),
+      ],
     );
   }
 }
