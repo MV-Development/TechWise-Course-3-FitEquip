@@ -6,9 +6,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 FirebaseFirestore firestore = FirebaseFirestore.instance;
 final muscleList = <String>[];
 final buttonsSelect = List<int>.filled(4, 0);
-final equipList = <String>[];
+var equipList = [""];
 final equipChoice = List<int>.filled(4, 0);
-Set<String> exerciseList = {};
+var exerciseList = [];
 final equipColorList = List.filled(4, Colors.white);
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -146,7 +146,7 @@ class _PartSelectState extends State<PartSelect> {
             context, MaterialPageRoute(builder: (context) => EquipSelect()));
         print('button pressed!');
 //**************************************************************************
-        getMuscleMovements();
+//        getMuscleMovements();
 //**************************************************************************
       },
       child: const Text('Next'),
@@ -240,6 +240,7 @@ class _EquipSelect extends State<EquipSelect> {
         //Navigator.push(
         //   context, MaterialPageRoute(builder: (context) => EquipSelect()));
         print('button pressed!');
+        getExercises();
       },
       child: const Text('Next'),
     );
@@ -247,35 +248,36 @@ class _EquipSelect extends State<EquipSelect> {
 }
 
 //***************************************************************************/
-//  CollectionReference woList =
-//      FirebaseFirestore.instance.collection('workouts');
 
-//    DocumentSnapshot dSnapshot =
-//        await firestore.collection('workouts').doc('workouts').get();
-/*
 getExercises() {
-  if (hasEquipment() && isNewExercise()) {
-    exerciseList.add();
-  }
-}
-
-hasEquipment(exerciseEquipment) {
-  return equipList.contains(exerciseEquipment);
-}
-
-isNewExercise(newExercise) {
-  return !exerciseList.contains(newExercise);
-}
-*/
-getMuscleMovements() {
+  exerciseList = [];
+  print('');
   for (var muscle in muscleList) {
     firestore.collection(muscle).get().then(
       (querySnapshot) {
         for (var doc in querySnapshot.docs) {
-          print(/*'${doc.id} =>*/ '${doc.data()}');
+          if (hasEquipment(doc.get("Equipment")) &&
+              isNewExercise(doc.get("Name"))) {
+            exerciseList.add(doc.get("Name"));
+            print(exerciseList);
+          }
         }
       },
       onError: (e) => print("Error completing: $e"),
     );
   }
+  print(exerciseList);
+}
+
+hasEquipment(exerciseEquipment) {
+  for (var item in exerciseEquipment) {
+    if (!equipList.contains(item)) {
+      return false;
+    }
+  }
+  return true;
+}
+
+isNewExercise(newExercise) {
+  return !exerciseList.contains(newExercise);
 }
