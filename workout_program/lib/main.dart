@@ -3,6 +3,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import 'icon_generator.dart';
+
 FirebaseFirestore firestore = FirebaseFirestore.instance;
 final muscleList = <String>[];
 final buttonsSelect = List<int>.filled(4, 0);
@@ -81,19 +83,23 @@ class _PartSelectState extends State<PartSelect> {
   }
 
   Column muscleSelect() {
+    var icons = IconGenerator();
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Row(
           children: [
-            muscleGroupIcons(
-                'assets/muscleGroups/arms.png', 'Arms', 0, colorList[0]),
-            muscleGroupIcons(
-                'assets/muscleGroups/legs_quads.png', 'Legs', 1, colorList[1]),
-            muscleGroupIcons('assets/muscleGroups/shoulders.png', 'Shoulders',
-                2, colorList[2]),
-            muscleGroupIcons(
-                'assets/muscleGroups/core.png', 'Abs', 3, colorList[3]),
+            for (int i = 0; i < icons.muscleIcons.length; i++)
+              muscleGroupIcons(
+                  icons.getmURL(i), icons.getmTag(i), i, colorList[i])
+
+            // muscleGroupIcons(icons.getURL(0), icons.getTag(0), 0, colorList[0]),
+            // muscleGroupIcons(
+            //     'assets/muscleGroups/legs_quads.png', 'Legs', 1, colorList[1]),
+            // muscleGroupIcons('assets/muscleGroups/shoulders.png', 'Shoulders',
+            //     2, colorList[2]),
+            // muscleGroupIcons(
+            //     'assets/muscleGroups/core.png', 'Abs', 3, colorList[3]),
           ],
         ),
       ],
