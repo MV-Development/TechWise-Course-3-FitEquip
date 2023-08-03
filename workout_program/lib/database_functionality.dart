@@ -6,7 +6,7 @@ FirebaseFirestore database = FirebaseFirestore.instance;
 
 
 
-get_equipment(String muscle, int doc){
+get_equipment(String muscle){
     database.collection(muscle).get().then(
       (querySnapshot) {
         return querySnapshot.docs[doc].get("Equipment");
@@ -14,7 +14,7 @@ get_equipment(String muscle, int doc){
     );
   }
 
-get_exercise_name(String muscle, int doc){
+get_exercise_name(String muscle){
     database.collection(muscle).get().then(
       (querySnapshot) {
         return querySnapshot.docs[doc].get("Name");
@@ -22,8 +22,9 @@ get_exercise_name(String muscle, int doc){
     );
   }
 
-get_exercises() {
-  print('');
+
+
+get_exercises(var muscleList, var equipmentList) {
   for (var muscle in muscleList) {
     database.collection(muscle).get().then(
       (querySnapshot) {
