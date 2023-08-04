@@ -5,6 +5,11 @@ class IconGenerator {
     ['assets/muscleGroups/shoulders.png', 'Shoulders'],
     ['assets/muscleGroups/core.png', 'Abs']
   ];
+  List<List<String>> equipIcons = [
+    ['assets/equipment/abRoller.png', 'Ab Roller'],
+    ['assets/equipment/dumbbells.png', 'Dumbells'],
+    ['assets/equipment/latPulldown.png', 'Shoulders'],
+  ];
 
   String getmURL(index) {
     List url = muscleIcons[index];
@@ -13,6 +18,16 @@ class IconGenerator {
 
   String getmTag(index) {
     List tag = muscleIcons[index];
+    return tag[1];
+  }
+
+  String geteURL(index) {
+    List url = equipIcons[index];
+    return url[0];
+  }
+
+  String geteTag(index) {
+    List tag = equipIcons[index];
     return tag[1];
   }
 }

@@ -92,14 +92,6 @@ class _PartSelectState extends State<PartSelect> {
             for (int i = 0; i < icons.muscleIcons.length; i++)
               muscleGroupIcons(
                   icons.getmURL(i), icons.getmTag(i), i, colorList[i])
-
-            // muscleGroupIcons(icons.getURL(0), icons.getTag(0), 0, colorList[0]),
-            // muscleGroupIcons(
-            //     'assets/muscleGroups/legs_quads.png', 'Legs', 1, colorList[1]),
-            // muscleGroupIcons('assets/muscleGroups/shoulders.png', 'Shoulders',
-            //     2, colorList[2]),
-            // muscleGroupIcons(
-            //     'assets/muscleGroups/core.png', 'Abs', 3, colorList[3]),
           ],
         ),
       ],
@@ -183,17 +175,16 @@ class _EquipSelect extends State<EquipSelect> {
   }
 
   Column exerciseList() {
+    var icons = IconGenerator();
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Row(
           children: [
-            equipmentIcons('assets/equipment/abRoller.png', 'Ab Roller', 0,
-                equipColorList[0]),
-            equipmentIcons('assets/equipment/dumbbells.png', 'Dumbbells', 1,
-                equipColorList[1]),
-            equipmentIcons('assets/equipment/latPulldown.png', 'Lat Pulldown',
-                2, equipColorList[2]),
+            for (int i = 0; i < icons.equipIcons.length; i++)
+              equipmentIcons(
+                  icons.geteURL(i), icons.geteTag(i), i, equipColorList[i])
+
             //equipmentIcons('assets/equipment/abRoller', '', 3),
           ],
         ),
@@ -232,7 +223,7 @@ class _EquipSelect extends State<EquipSelect> {
                 }
               },
               child: Image.asset(imagePath, height: 100, width: 100),
-            ),
+            ), 
           ],
         ),
         Text(label),
