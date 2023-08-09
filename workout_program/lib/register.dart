@@ -5,6 +5,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'icon_generator.dart';
 import 'login.dart';
 import 'main.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
+FirebaseFirestore firestore = FirebaseFirestore.instance;
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -13,7 +16,25 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPage extends State<RegisterPage> {
+  final emailController = TextEditingController();
+  final passController = TextEditingController();
+  registerUser(email, password) async {
+    try {
+      final credential = await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(email: email, password: password);
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'weak-password') {
+        print('The password is too weak');
+      } else if (e.code == 'email-already-in-use') {
+        print('This account already exists');
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
   @override
+  void dispose() {}
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
