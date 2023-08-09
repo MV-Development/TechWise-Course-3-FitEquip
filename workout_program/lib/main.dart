@@ -48,61 +48,56 @@ class _LoginPage extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar (
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text('Login'),
-        leading: Image.asset('assets/FitEquipLogo.png')
-      ),
-      body: Center (
-        child: Column (
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget> [
-            InkWell (
-              child: Text('Register'),
-              onTap: () {
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => RegisterPage()));
-              }
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal:300, vertical: 15),
-              child: TextField(
-                decoration: InputDecoration(
-                  filled: true,
-                  fillColor: Colors.white,
-                  border: OutlineInputBorder(),
-                  labelText: 'Email',
-                  hintText: 'Enter valid email, ex: abcd@gmail.com',
-                )
-              )
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal:300, vertical: 15),
-              child: TextField(
-                decoration: InputDecoration(
-                  filled: true,
-                  fillColor: Colors.white,
-                  border: OutlineInputBorder(),
-                  labelText: 'Password',
-                  hintText: 'Enter valid password',
-                )
-              )
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 500, vertical: 15),
-              child:  ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => PartSelect()));
-                  print('button pressed!');
-                },
-                child: const Text('Next'),
-              )
-              ),
-          ]
-        )
-      )
-    );
+        appBar: AppBar(
+            backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+            title: Text('Login'),
+            leading: Image.asset('assets/FitEquipLogo.png')),
+        body: Center(
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+              InkWell(
+                  child: Text('Register'),
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => RegisterPage()));
+                  }),
+              const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 300, vertical: 15),
+                  child: TextField(
+                      decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.white,
+                    border: OutlineInputBorder(),
+                    labelText: 'Email',
+                    hintText: 'Enter valid email, ex: abcd@gmail.com',
+                  ))),
+              const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 300, vertical: 15),
+                  child: TextField(
+                      decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.white,
+                    border: OutlineInputBorder(),
+                    labelText: 'Password',
+                    hintText: 'Enter valid password',
+                  ))),
+              Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 500, vertical: 15),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const PartSelect()));
+                      print('button pressed!');
+                    },
+                    child: const Text('Next'),
+                  )),
+            ])));
   }
 }
 
@@ -116,61 +111,57 @@ class _RegisterPage extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar (
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text('Register'),
-        leading: Image.asset('assets/FitEquipLogo.png')
-      ),
-      body: Center (
-        child: Column (
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget> [
-            InkWell (
-              child: Text('Login'),
-              onTap: () {
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => LoginPage(title: 'FitEquip')));
-              }
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal:300, vertical: 15),
-              child: TextField(
-                decoration: InputDecoration(
-                  filled: true,
-                  fillColor: Colors.white,
-                  border: OutlineInputBorder(),
-                  labelText: 'Email',
-                  hintText: 'Enter valid email, ex: abcd@gmail.com',
-                )
-              )
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal:300, vertical: 15),
-              child: TextField(
-                decoration: InputDecoration(
-                  filled: true,
-                  fillColor: Colors.white,
-                  border: OutlineInputBorder(),
-                  labelText: 'Password',
-                  hintText: 'Enter valid password',
-                )
-              )
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 500, vertical: 15),
-              child:  ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => LoginPage(title: 'FitEquip')));
-                  print('button pressed!');
-                },
-                child: const Text('Next'),
-              )
-              ),
-          ]
-        )
-      )
-    );
+        appBar: AppBar(
+            backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+            title: Text('Register'),
+            leading: Image.asset('assets/FitEquipLogo.png')),
+        body: Center(
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+              InkWell(
+                  child: Text('Login'),
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                LoginPage(title: 'FitEquip')));
+                  }),
+              Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 300, vertical: 15),
+                  child: TextField(
+                      decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.white,
+                    border: OutlineInputBorder(),
+                    labelText: 'Email',
+                    hintText: 'Enter valid email, ex: abcd@gmail.com',
+                  ))),
+              Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 300, vertical: 15),
+                  child: TextField(
+                      decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.white,
+                    border: OutlineInputBorder(),
+                    labelText: 'Password',
+                    hintText: 'Enter valid password',
+                  ))),
+              Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 500, vertical: 15),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  LoginPage(title: 'FitEquip')));
+                      print('button pressed!');
+                    },
+                    child: const Text('Next'),
+                  )),
+            ])));
   }
 }
 
@@ -357,7 +348,7 @@ class _EquipSelect extends State<EquipSelect> {
                 }
               },
               child: Image.asset(imagePath, height: 100, width: 100),
-            ), 
+            ),
           ],
         ),
         Text(label),
@@ -369,7 +360,7 @@ class _EquipSelect extends State<EquipSelect> {
     return ElevatedButton(
       onPressed: () {
         Navigator.push(
-           context, MaterialPageRoute(builder: (context) => ShowExercises()));
+            context, MaterialPageRoute(builder: (context) => ShowExercises()));
         print('button pressed!');
         getExercises();
       },
@@ -388,25 +379,20 @@ class _ShowExercises extends State<ShowExercises> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Results"),
-        leading: Image.asset('assets/FitEquipLogo.png'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-
-              ),
-            Text("Hello"),
-            Text("Goodbye")
-        ]
-      ))
-    );
+        appBar: AppBar(
+          title: Text("Results"),
+          leading: Image.asset('assets/FitEquipLogo.png'),
+        ),
+        body: Center(
+            child:
+                Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          ),
+          Text("Hello"),
+          Text("Goodbye")
+        ])));
   }
-  
 }
 
 //***************************************************************************/
