@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -6,8 +8,6 @@ import 'icon_generator.dart';
 import 'login.dart';
 import 'main.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
-FirebaseFirestore firestore = FirebaseFirestore.instance;
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -34,7 +34,12 @@ class _RegisterPage extends State<RegisterPage> {
   }
 
   @override
-  void dispose() {}
+  void dispose() {
+    emailController.dispose();
+    passController.dispose();
+    super.dispose();
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
@@ -46,7 +51,7 @@ class _RegisterPage extends State<RegisterPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
               InkWell(
-                  child: Text('Login'),
+                  child: Text('Click here to login'),
                   onTap: () {
                     Navigator.push(
                         context,
@@ -54,31 +59,34 @@ class _RegisterPage extends State<RegisterPage> {
                             builder: (context) =>
                                 const LoginPage(title: 'FitEquip')));
                   }),
-              const Padding(
+              Padding(
                   padding: EdgeInsets.symmetric(horizontal: 300, vertical: 15),
                   child: TextField(
+                      controller: emailController,
                       decoration: InputDecoration(
-                    filled: true,
-                    fillColor: Colors.white,
-                    border: OutlineInputBorder(),
-                    labelText: 'Email',
-                    hintText: 'Enter valid email, ex: abcd@gmail.com',
-                  ))),
-              const Padding(
+                        filled: true,
+                        fillColor: Colors.white,
+                        border: OutlineInputBorder(),
+                        labelText: 'Email',
+                        hintText: 'Enter valid email, ex: abcd@gmail.com',
+                      ))),
+              Padding(
                   padding: EdgeInsets.symmetric(horizontal: 300, vertical: 15),
                   child: TextField(
+                      controller: passController,
                       decoration: InputDecoration(
-                    filled: true,
-                    fillColor: Colors.white,
-                    border: OutlineInputBorder(),
-                    labelText: 'Password',
-                    hintText: 'Enter valid password',
-                  ))),
+                        filled: true,
+                        fillColor: Colors.white,
+                        border: OutlineInputBorder(),
+                        labelText: 'Password',
+                        hintText: 'Enter valid password',
+                      ))),
               Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 500, vertical: 15),
                   child: ElevatedButton(
                     onPressed: () {
+                      registerUser(emailController.text, passController.text);
                       Navigator.push(
                           context,
                           MaterialPageRoute(
