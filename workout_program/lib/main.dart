@@ -236,7 +236,6 @@ class _EquipSelect extends State<EquipSelect> {
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => const ShowExercises()));
         print('button pressed!');
-        getExercises();
       },
       child: const Text('Next'),
     );
