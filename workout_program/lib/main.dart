@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-
 import 'icon_generator.dart';
+import 'register.dart';
+import 'login.dart';
 import 'database_functionality.dart';
 
 FirebaseFirestore firestore = FirebaseFirestore.instance;
@@ -38,134 +39,6 @@ class FitEquip extends StatelessWidget {
   }
 }
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key, required this.title});
-  final String title;
-  @override
-  State<LoginPage> createState() => _LoginPage();
-}
-
-class _LoginPage extends State<LoginPage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-            backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-            title: Text('Login'),
-            leading: Image.asset('assets/FitEquipLogo.png')),
-        body: Center(
-            child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-              InkWell(
-                  child: Text('Register'),
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => RegisterPage()));
-                  }),
-              const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 300, vertical: 15),
-                  child: TextField(
-                      decoration: InputDecoration(
-                    filled: true,
-                    fillColor: Colors.white,
-                    border: OutlineInputBorder(),
-                    labelText: 'Email',
-                    hintText: 'Enter valid email, ex: abcd@gmail.com',
-                  ))),
-              const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 300, vertical: 15),
-                  child: TextField(
-                      decoration: InputDecoration(
-                    filled: true,
-                    fillColor: Colors.white,
-                    border: OutlineInputBorder(),
-                    labelText: 'Password',
-                    hintText: 'Enter valid password',
-                  ))),
-              Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 500, vertical: 15),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const PartSelect()));
-                      print('button pressed!');
-                    },
-                    child: const Text('Next'),
-                  )),
-            ])));
-  }
-}
-
-class RegisterPage extends StatefulWidget {
-  const RegisterPage({super.key});
-  @override
-  State<RegisterPage> createState() => _RegisterPage();
-}
-
-class _RegisterPage extends State<RegisterPage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-            backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-            title: Text('Register'),
-            leading: Image.asset('assets/FitEquipLogo.png')),
-        body: Center(
-            child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-              InkWell(
-                  child: Text('Login'),
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) =>
-                                LoginPage(title: 'FitEquip')));
-                  }),
-              Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 300, vertical: 15),
-                  child: TextField(
-                      decoration: InputDecoration(
-                    filled: true,
-                    fillColor: Colors.white,
-                    border: OutlineInputBorder(),
-                    labelText: 'Email',
-                    hintText: 'Enter valid email, ex: abcd@gmail.com',
-                  ))),
-              Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 300, vertical: 15),
-                  child: TextField(
-                      decoration: InputDecoration(
-                    filled: true,
-                    fillColor: Colors.white,
-                    border: OutlineInputBorder(),
-                    labelText: 'Password',
-                    hintText: 'Enter valid password',
-                  ))),
-              Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 500, vertical: 15),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  LoginPage(title: 'FitEquip')));
-                      print('button pressed!');
-                    },
-                    child: const Text('Next'),
-                  )),
-            ])));
-  }
-}
-
 class PartSelect extends StatefulWidget {
   const PartSelect({super.key});
   @override
@@ -193,7 +66,7 @@ class _PartSelectState extends State<PartSelect> {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-          title: Text("FitEquip"),
+          title: const Text("FitEquip"),
           leading: Image.asset('assets/FitEquipLogo.png'),
         ),
         body: Center(
@@ -266,8 +139,8 @@ class _PartSelectState extends State<PartSelect> {
   ElevatedButton toEquip() {
     return ElevatedButton(
       onPressed: () {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => EquipSelect()));
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const EquipSelect()));
         print('button pressed!');
 //**************************************************************************
 //        getMuscleMovements();
@@ -360,8 +233,8 @@ class _EquipSelect extends State<EquipSelect> {
   ElevatedButton toExercises() {
     return ElevatedButton(
       onPressed: () {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => ShowExercises()));
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const ShowExercises()));
         print('button pressed!');
         getExercises();
       },
@@ -384,7 +257,7 @@ class _ShowExercises extends State<ShowExercises> {
           title: Text("Results"),
           leading: Image.asset('assets/FitEquipLogo.png'),
         ),
-        body: Center(
+        body: const Center(
             child:
                 Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           Row(
