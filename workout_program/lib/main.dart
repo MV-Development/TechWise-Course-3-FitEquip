@@ -234,14 +234,45 @@ class _EquipSelect extends State<EquipSelect> {
   ElevatedButton toExercises() {
     return ElevatedButton(
       onPressed: () {
-        //Navigator.push(
-        //   context, MaterialPageRoute(builder: (context) => EquipSelect()));
+        Navigator.push(
+           context, MaterialPageRoute(builder: (context) => ShowExercises()));
         print('button pressed!');
         getExercises();
       },
       child: const Text('Next'),
     );
   }
+}
+
+class ShowExercises extends StatefulWidget {
+  const ShowExercises({super.key});
+  @override
+  State<ShowExercises> createState() => _ShowExercises();
+}
+
+class _ShowExercises extends State<ShowExercises> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Results"),
+        leading: Image.asset('assets/FitEquipLogo.png'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+
+              ),
+            Text("Hello"),
+            Text("Goodbye")
+        ]
+      ))
+    );
+  }
+  
 }
 
 //***************************************************************************/
