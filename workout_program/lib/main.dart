@@ -4,13 +4,14 @@ import 'firebase_options.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'icon_generator.dart';
+import 'database_functionality.dart';
 
 FirebaseFirestore firestore = FirebaseFirestore.instance;
 final muscleList = <String>[];
 final buttonsSelect = List<int>.filled(4, 0);
 var equipList = [""];
 final equipChoice = List<int>.filled(4, 0);
-var exerciseList = [];
+var movementList = [];
 final equipColorList = List.filled(4, Colors.white);
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -396,9 +397,9 @@ class _ShowExercises extends State<ShowExercises> {
 }
 
 //***************************************************************************/
-
+/*
 getExercises() {
-  exerciseList = [];
+  movementList = [];
   print('');
   for (var muscle in muscleList) {
     firestore.collection(muscle).get().then(
@@ -406,15 +407,15 @@ getExercises() {
         for (var doc in querySnapshot.docs) {
           if (hasEquipment(doc.get("Equipment")) &&
               isNewExercise(doc.get("Name"))) {
-            exerciseList.add(doc.get("Name"));
-            print(exerciseList);
+            movementList.add(doc.get("Name"));
+            print(movementList);
           }
         }
       },
       onError: (e) => print("Error completing: $e"),
     );
   }
-  print(exerciseList);
+  print(movementList);
 }
 
 hasEquipment(exerciseEquipment) {
@@ -427,5 +428,6 @@ hasEquipment(exerciseEquipment) {
 }
 
 isNewExercise(newExercise) {
-  return !exerciseList.contains(newExercise);
+  return !movementList.contains(newExercise);
 }
+*/
