@@ -62,7 +62,7 @@ class _LoginPage extends State<LoginPage> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => RegisterPage()));
+                            builder: (context) => const RegisterPage()));
                   }),
               const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 300, vertical: 15),
@@ -126,9 +126,9 @@ class _RegisterPage extends State<RegisterPage> {
                         context,
                         MaterialPageRoute(
                             builder: (context) =>
-                                LoginPage(title: 'FitEquip')));
+                                const LoginPage(title: 'FitEquip')));
                   }),
-              Padding(
+              const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 300, vertical: 15),
                   child: TextField(
                       decoration: InputDecoration(
@@ -138,7 +138,7 @@ class _RegisterPage extends State<RegisterPage> {
                     labelText: 'Email',
                     hintText: 'Enter valid email, ex: abcd@gmail.com',
                   ))),
-              Padding(
+              const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 300, vertical: 15),
                   child: TextField(
                       decoration: InputDecoration(
@@ -149,14 +149,15 @@ class _RegisterPage extends State<RegisterPage> {
                     hintText: 'Enter valid password',
                   ))),
               Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 500, vertical: 15),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 500, vertical: 15),
                   child: ElevatedButton(
                     onPressed: () {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: (context) =>
-                                  LoginPage(title: 'FitEquip')));
+                                  const LoginPage(title: 'FitEquip')));
                       print('button pressed!');
                     },
                     child: const Text('Next'),
@@ -192,7 +193,7 @@ class _PartSelectState extends State<PartSelect> {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-          title: Text("FitEquip"),
+          title: const Text("FitEquip"),
           leading: Image.asset('assets/FitEquipLogo.png'),
         ),
         body: Center(
@@ -265,8 +266,8 @@ class _PartSelectState extends State<PartSelect> {
   ElevatedButton toEquip() {
     return ElevatedButton(
       onPressed: () {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => EquipSelect()));
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const EquipSelect()));
         print('button pressed!');
 //**************************************************************************
 //        getMuscleMovements();
@@ -359,8 +360,8 @@ class _EquipSelect extends State<EquipSelect> {
   ElevatedButton toExercises() {
     return ElevatedButton(
       onPressed: () {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => ShowExercises()));
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const ShowExercises()));
         print('button pressed!');
         getExercises();
       },
@@ -383,7 +384,7 @@ class _ShowExercises extends State<ShowExercises> {
           title: Text("Results"),
           leading: Image.asset('assets/FitEquipLogo.png'),
         ),
-        body: Center(
+        body: const Center(
             child:
                 Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           Row(
