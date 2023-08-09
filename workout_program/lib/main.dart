@@ -32,16 +32,75 @@ class FitEquip extends StatelessWidget {
         useMaterial3: true,
         scaffoldBackgroundColor: Colors.deepPurple,
       ),
-      home: const PartSelect(title: 'FitEquip'),
+      home: const LoginPage(title: 'FitEquip'),
+    );
+  }
+}
+
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key, required this.title});
+  final String title;
+  @override
+  State<LoginPage> createState() => _LoginPage();
+}
+
+class _LoginPage extends State<LoginPage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar (
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        title: Text('Login'),
+        leading: Image.asset('assets/FitEquipLogo.png')
+      ),
+      body: Center (
+        child: Column (
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget> [
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal:300, vertical: 15),
+              child: TextField(
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Colors.white,
+                  border: OutlineInputBorder(),
+                  labelText: 'Email',
+                  hintText: 'Enter valid email, ex: abcd@gmail.com',
+                )
+              )
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal:300, vertical: 15),
+              child: TextField(
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Colors.white,
+                  border: OutlineInputBorder(),
+                  labelText: 'Password',
+                  hintText: 'Enter valid password',
+                )
+              )
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 500, vertical: 15),
+              child:  ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => PartSelect()));
+                  print('button pressed!');
+                },
+                child: const Text('Next'),
+              )
+              ),
+          ]
+        )
+      )
     );
   }
 }
 
 class PartSelect extends StatefulWidget {
-  const PartSelect({super.key, required this.title});
-
-  final String title;
-
+  const PartSelect({super.key});
   @override
   State<PartSelect> createState() => _PartSelectState();
 }
@@ -67,7 +126,7 @@ class _PartSelectState extends State<PartSelect> {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-          title: Text(widget.title),
+          title: Text("FitEquip"),
           leading: Image.asset('assets/FitEquipLogo.png'),
         ),
         body: Center(
