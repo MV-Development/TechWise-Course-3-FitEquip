@@ -39,7 +39,7 @@ class _LoginPage extends State<LoginPage> {
   nextPage() async {
     FirebaseAuth.instance.authStateChanges().listen((User? user) {
       if (user == null) {
-        print('user signed out');
+        print('user signed in');
       } else {
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => const PartSelect()));
@@ -70,14 +70,14 @@ class _LoginPage extends State<LoginPage> {
                   ),
                 ),
               ),
-              InkWell(
-                  child: Text('Click here to register'),
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const RegisterPage()));
-                  }),
+              Text(
+                'Log In',
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),
+              ),
               Padding(
                   padding: EdgeInsets.symmetric(horizontal: 300, vertical: 15),
                   child: TextField(
@@ -109,8 +109,16 @@ class _LoginPage extends State<LoginPage> {
                       loginUser(emailController.text, passController.text);
                       nextPage();
                     },
-                    child: const Text('Next'),
+                    child: const Text('Enter'),
                   )),
+              InkWell(
+                  child: Text("Don't have an account? Register here!"),
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const RegisterPage()));
+                  }),
             ])));
   }
 }
