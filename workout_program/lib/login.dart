@@ -53,6 +53,18 @@ class _LoginPage extends State<LoginPage> {
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
+              Flexible(
+                  child: Container(
+                    constraints: BoxConstraints(
+                      minWidth: 150, // Set a minimum width
+                      maxWidth: 350, // Set a maximum width
+                    ),
+                    child: Image.asset(
+                      'assets/FitEquipLogo.png',
+                      fit: BoxFit.contain,
+                    ),
+                  ),
+                ),
               InkWell(
                   child: Text('Click here to register'),
                   onTap: () {
