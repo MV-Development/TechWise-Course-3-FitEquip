@@ -45,7 +45,7 @@ class _LoginPage extends State<LoginPage> {
   nextPage() async {
     FirebaseAuth.instance.authStateChanges().listen((User? user) {
       if (user == null) {
-        print('user signed out');
+        print('user signed in');
       } else {
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => const PartSelect()));
@@ -67,8 +67,8 @@ class _LoginPage extends State<LoginPage> {
               Flexible(
                 child: Container(
                   constraints: BoxConstraints(
-                    minWidth: 150, // Set a minimum width
-                    maxWidth: 350, // Set a maximum width
+                    minWidth: 150,
+                    maxWidth: 350, 
                   ),
                   child: Image.asset(
                     'assets/FitEquipLogo.png',
@@ -76,14 +76,14 @@ class _LoginPage extends State<LoginPage> {
                   ),
                 ),
               ),
-              InkWell(
-                  child: Text('Click here to register'),
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const RegisterPage()));
-                  }),
+              Text(
+                'Log In',
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),
+              ),
               Padding(
                   padding: EdgeInsets.symmetric(horizontal: 300, vertical: 15),
                   child: TextField(
@@ -118,8 +118,18 @@ class _LoginPage extends State<LoginPage> {
                       print('button pressed!');
                       loginUser(emailController.text, passController.text);
                     },
-                    child: const Text('Next'),
+                    child: const Text('Enter',
+                    style: TextStyle(color: Colors.black),),
                   )),
+              InkWell(
+                  child: Text("Don't have an account? Register here!",
+                  style: TextStyle(color: Colors.white),),
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const RegisterPage()));
+                  }),
             ])));
   }
 }
