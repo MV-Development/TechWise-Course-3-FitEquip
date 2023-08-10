@@ -7,8 +7,8 @@ class IconGenerator {
   ];
   List<List<String>> equipIcons = [
     ['assets/equipment/abRoller.png', 'Ab Roller'],
-    ['assets/equipment/dumbbells.png', 'Dumbells'],
-    ['assets/equipment/latPulldown.png', 'Shoulders'],
+    ['assets/equipment/dumbbells.png', 'Dumbbells'],
+    ['assets/equipment/latPulldown.png', 'Lat Pulldown'],
   ];
 
   String getmURL(index) {

@@ -6,8 +6,10 @@ import 'icon_generator.dart';
 import 'register.dart';
 import 'login.dart';
 import 'database_functionality.dart';
+import 'muscle_select.dart';
+import 'equip_select.dart';
+import 'exercises.dart';
 
-FirebaseFirestore firestore = FirebaseFirestore.instance;
 final muscleList = <String>[];
 final buttonsSelect = List<int>.filled(4, 0);
 var equipList = [""];
@@ -16,9 +18,10 @@ var movementList = [];
 final equipColorList = List.filled(4, Colors.white);
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  //await Firebase.initializeApp(
+  // options: DefaultFirebaseOptions.currentPlatform,
+  //);
   runApp(const FitEquip());
 }
 
@@ -39,6 +42,8 @@ class FitEquip extends StatelessWidget {
   }
 }
 
+//***************************************************************************
+
 class PartSelect extends StatefulWidget {
   const PartSelect({super.key});
   @override
@@ -48,18 +53,6 @@ class PartSelect extends StatefulWidget {
 class _PartSelectState extends State<PartSelect> {
   var text = 'Exercise';
   final colorList = List.filled(4, Colors.white);
-  CollectionReference woList =
-      FirebaseFirestore.instance.collection('workouts');
-
-  getData(code) async {
-    DocumentSnapshot dSnapshot =
-        await firestore.collection('workouts').doc('workouts').get();
-    if (dSnapshot.exists) {
-      setState(() {
-        text = dSnapshot[code].toString();
-      });
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -141,15 +134,14 @@ class _PartSelectState extends State<PartSelect> {
       onPressed: () {
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => const EquipSelect()));
-        print('button pressed!');
-//**************************************************************************
-//        getMuscleMovements();
-//**************************************************************************
+        //print('button pressed!');
       },
       child: const Text('Next'),
     );
   }
 }
+
+//***************************************************************************
 
 class EquipSelect extends StatefulWidget {
   const EquipSelect({super.key});
@@ -232,16 +224,21 @@ class _EquipSelect extends State<EquipSelect> {
 
   ElevatedButton toExercises() {
     return ElevatedButton(
-      onPressed: () {
+      onPressed: () async {
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => const ShowExercises()));
         print('button pressed!');
-        getExercises();
+        print("A");
+        getExercises(muscleList, equipList);
+        print("Z");
+        print(movementList);
       },
       child: const Text('Next'),
     );
   }
 }
+
+//**************************************************************************
 
 class ShowExercises extends StatefulWidget {
   const ShowExercises({super.key});
@@ -269,38 +266,41 @@ class _ShowExercises extends State<ShowExercises> {
   }
 }
 
-//***************************************************************************/
-/*
-getExercises() {
-  movementList = [];
-  print('');
-  for (var muscle in muscleList) {
-    firestore.collection(muscle).get().then(
+//***************************************************************************
+// database functionality
+getExercises(var userMuscleList, var userEquipmentList) {
+  FirebaseFirestore database = FirebaseFirestore.instance;
+  for (var muscle in userMuscleList) {
+    database.collection(muscle).get().then(
       (querySnapshot) {
         for (var doc in querySnapshot.docs) {
-          if (hasEquipment(doc.get("Equipment")) &&
-              isNewExercise(doc.get("Name"))) {
+          if (hasEquipment(userEquipmentList, doc.get("Equipment")) &&
+              isNewExercise(movementList, doc.get("Name"))) {
             movementList.add(doc.get("Name"));
             print(movementList);
           }
         }
+        print("All Docs in collection checked");
+        print(movementList);
       },
       onError: (e) => print("Error completing: $e"),
     );
   }
+  print("All collections checked");
   print(movementList);
+
+  //return exerciseList;
 }
 
-hasEquipment(exerciseEquipment) {
+hasEquipment(userEquipment, exerciseEquipment) {
   for (var item in exerciseEquipment) {
-    if (!equipList.contains(item)) {
+    if (!userEquipment.contains(item)) {
       return false;
     }
   }
   return true;
 }
 
-isNewExercise(newExercise) {
-  return !movementList.contains(newExercise);
+isNewExercise(exerciseList, newExercise) {
+  return !exerciseList.contains(newExercise);
 }
-*/

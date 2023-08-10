@@ -1,10 +1,15 @@
+/*
+//import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-FirebaseFirestore database = FirebaseFirestore.instance;
 
-get_equipment(String muscle) {
+/*
+get_equipment(String muscle) async {
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   database.collection(muscle).get().then(
     (querySnapshot) {
       return querySnapshot.docs[doc].get("Equipment");
@@ -13,7 +18,10 @@ get_equipment(String muscle) {
   );
 }
 
-get_exercise_name(String muscle) {
+get_exercise_name(String muscle) async {
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   database.collection(muscle).get().then(
     (querySnapshot) {
       return querySnapshot.docs[doc].get("Name");
@@ -21,30 +29,37 @@ get_exercise_name(String muscle) {
     onError: (e) => print("Error completing: $e"),
   );
 }
+*/
 
-get_exercises(var muscleList, var equipmentList) {
+
+
+getExercises(var userMuscleList, var userEquipmentList) async {
+  FirebaseFirestore database = FirebaseFirestore.instance;
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   var exerciseList = <String>[];
-  for (var muscle in muscleList) {
+  for (var muscle in userMuscleList) {
     database.collection(muscle).get().then(
       (querySnapshot) {
         for (var doc in querySnapshot.docs) {
-          if (hasEquipment(doc.get("Equipment")) &&
+          if (hasEquipment(userEquipmentList, doc.get("Equipment")) &&
               isNewExercise(exerciseList, doc.get("Name"))) {
             exerciseList.add(doc.get("Name"));
-            print(exerciseList);
+            //print(exerciseList);
           }
         }
       },
       onError: (e) => print("Error completing: $e"),
     );
   }
-  print(exerciseList);
+  //print(exerciseList);
   return exerciseList;
 }
 
-hasEquipment(equipList, exerciseEquipment) {
+hasEquipment(userEquipment, exerciseEquipment) {
   for (var item in exerciseEquipment) {
-    if (!equipList.contains(item)) {
+    if (!userEquipment.contains(item)) {
       return false;
     }
   }
@@ -54,3 +69,4 @@ hasEquipment(equipList, exerciseEquipment) {
 isNewExercise(exerciseList, newExercise) {
   return !exerciseList.contains(newExercise);
 }
+*/

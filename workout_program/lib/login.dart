@@ -4,6 +4,11 @@ import 'firebase_options.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'icon_generator.dart';
 import 'register.dart';
+
+import 'database_functionality.dart';
+import 'muscle_select.dart';
+import 'equip_select.dart';
+import 'exercises.dart';
 import 'main.dart';
 
 class LoginPage extends StatefulWidget {
