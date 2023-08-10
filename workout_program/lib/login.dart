@@ -16,6 +16,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPage extends State<LoginPage> {
+  final emailController = TextEditingController();
+  final passController = TextEditingController();
   loginUser(email, password) async {
     try {
       final credential = await FirebaseAuth.instance
@@ -52,39 +54,42 @@ class _LoginPage extends State<LoginPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
               InkWell(
-                  child: Text('Register'),
+                  child: Text('Click here to register'),
                   onTap: () {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
                             builder: (context) => const RegisterPage()));
                   }),
-              const Padding(
+              Padding(
                   padding: EdgeInsets.symmetric(horizontal: 300, vertical: 15),
                   child: TextField(
+                      controller: passController,
                       decoration: InputDecoration(
-                    filled: true,
-                    fillColor: Colors.white,
-                    border: OutlineInputBorder(),
-                    labelText: 'Email',
-                    hintText: 'Enter valid email, ex: abcd@gmail.com',
-                  ))),
-              const Padding(
+                        filled: true,
+                        fillColor: Colors.white,
+                        border: OutlineInputBorder(),
+                        labelText: 'Email',
+                        hintText: 'Enter valid email, ex: abcd@gmail.com',
+                      ))),
+              Padding(
                   padding: EdgeInsets.symmetric(horizontal: 300, vertical: 15),
                   child: TextField(
+                      controller: emailController,
                       decoration: InputDecoration(
-                    filled: true,
-                    fillColor: Colors.white,
-                    border: OutlineInputBorder(),
-                    labelText: 'Password',
-                    hintText: 'Enter valid password',
-                  ))),
+                        filled: true,
+                        fillColor: Colors.white,
+                        border: OutlineInputBorder(),
+                        labelText: 'Password',
+                        hintText: 'Enter valid password',
+                      ))),
               Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 500, vertical: 15),
                   child: ElevatedButton(
                     onPressed: () {
                       print('button pressed!');
+                      loginUser(emailController.text, passController.text);
                       nextPage();
                     },
                     child: const Text('Next'),
