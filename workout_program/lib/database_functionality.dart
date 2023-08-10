@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /*
 //import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -71,7 +70,6 @@ isNewExercise(exerciseList, newExercise) {
   return !exerciseList.contains(newExercise);
 }
 */
-=======
 // import 'package:firebase_core/firebase_core.dart';
 // import 'firebase_options.dart';
 // import 'package:cloud_firestore/cloud_firestore.dart';
@@ -128,4 +126,3 @@ isNewExercise(exerciseList, newExercise) {
 // isNewExercise(exerciseList, newExercise) {
 //   return !exerciseList.contains(newExercise);
 // }
->>>>>>> f88d1e8996cac1903679871530b4c50ed66abb8e
