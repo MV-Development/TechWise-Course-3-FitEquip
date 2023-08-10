@@ -23,15 +23,21 @@ class LoginPage extends StatefulWidget {
 class _LoginPage extends State<LoginPage> {
   final emailController = TextEditingController();
   final passController = TextEditingController();
+  var alertMessage = '';
   loginUser(email, password) async {
     try {
       final credential = await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
+      nextPage();
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
-        print('No user found for that email.');
+        setState(() {
+          alertMessage = 'No user found for that email.';
+        });
       } else if (e.code == 'wrong-password') {
-        print('Wrong password provided for that user.');
+        setState(() {
+          alertMessage = 'Wrong password provided for that user.';
+        });
       }
     }
   }
@@ -93,6 +99,9 @@ class _LoginPage extends State<LoginPage> {
                   padding: EdgeInsets.symmetric(horizontal: 300, vertical: 15),
                   child: TextField(
                       controller: passController,
+                      obscureText: true,
+                      enableSuggestions: false,
+                      autocorrect: false,
                       decoration: InputDecoration(
                         filled: true,
                         fillColor: Colors.white,
@@ -100,6 +109,7 @@ class _LoginPage extends State<LoginPage> {
                         labelText: 'Password',
                         hintText: 'Enter valid password',
                       ))),
+              Text(alertMessage),
               Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 500, vertical: 15),
@@ -107,7 +117,6 @@ class _LoginPage extends State<LoginPage> {
                     onPressed: () {
                       print('button pressed!');
                       loginUser(emailController.text, passController.text);
-                      nextPage();
                     },
                     child: const Text('Next'),
                   )),

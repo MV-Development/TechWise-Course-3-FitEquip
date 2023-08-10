@@ -18,18 +18,26 @@ class RegisterPage extends StatefulWidget {
 class _RegisterPage extends State<RegisterPage> {
   final emailController = TextEditingController();
   final passController = TextEditingController();
+  var alertMessage = '';
   registerUser(email, password) async {
     try {
       final credential = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
+      setState(() {alertMessage = 'Success!';});
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
-        print('The password is too weak');
+        setState(() {
+          alertMessage = 'Password is too weak.';
+        });
       } else if (e.code == 'email-already-in-use') {
-        print('This account already exists');
+        setState(() {
+          alertMessage = 'Email already in use.';
+        });
       }
     } catch (e) {
-      print(e);
+      setState(() {
+        alertMessage = e.toString();
+      });
     }
   }
 
@@ -39,7 +47,7 @@ class _RegisterPage extends State<RegisterPage> {
     passController.dispose();
     super.dispose();
   }
-
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
@@ -86,6 +94,9 @@ class _RegisterPage extends State<RegisterPage> {
                   padding: EdgeInsets.symmetric(horizontal: 300, vertical: 15),
                   child: TextField(
                       controller: passController,
+                      obscureText: true,
+                      enableSuggestions: false,
+                      autocorrect: false,
                       decoration: InputDecoration(
                         filled: true,
                         fillColor: Colors.white,
@@ -93,18 +104,13 @@ class _RegisterPage extends State<RegisterPage> {
                         labelText: 'Password',
                         hintText: 'Enter valid password',
                       ))),
+              Text(alertMessage),
               Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 500, vertical: 15),
                   child: ElevatedButton(
                     onPressed: () {
                       registerUser(emailController.text, passController.text);
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  const LoginPage(title: 'FitEquip')));
-                      print('button pressed!');
                     },
                     child: const Text('Next'),
                   )),
