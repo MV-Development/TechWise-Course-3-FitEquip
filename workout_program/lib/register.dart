@@ -53,8 +53,8 @@ class _RegisterPage extends State<RegisterPage> {
               Flexible(
                   child: Container(
                     constraints: BoxConstraints(
-                      minWidth: 150, // Set a minimum width
-                      maxWidth: 350, // Set a maximum width
+                      minWidth: 150,
+                      maxWidth: 350, 
                     ),
                     child: Image.asset(
                       'assets/FitEquipLogo.png',
@@ -62,15 +62,14 @@ class _RegisterPage extends State<RegisterPage> {
                     ),
                   ),
                 ),
-              InkWell(
-                  child: Text('Click here to login'),
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) =>
-                                const LoginPage(title: 'FitEquip')));
-                  }),
+              Text(
+                'Register',
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),
+              ),
               Padding(
                   padding: EdgeInsets.symmetric(horizontal: 300, vertical: 15),
                   child: TextField(
@@ -106,8 +105,19 @@ class _RegisterPage extends State<RegisterPage> {
                                   const LoginPage(title: 'FitEquip')));
                       print('button pressed!');
                     },
-                    child: const Text('Next'),
+                    child: const Text('Enter',
+                      style: TextStyle(color: Colors.black),),
                   )),
+              InkWell(
+                  child: Text('Already have an account? Click here to login', 
+                  style: TextStyle(color: Colors.white),),
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                const LoginPage(title: 'FitEquip')));
+                  }),
             ])));
   }
 }

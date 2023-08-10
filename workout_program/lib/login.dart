@@ -61,8 +61,8 @@ class _LoginPage extends State<LoginPage> {
               Flexible(
                 child: Container(
                   constraints: BoxConstraints(
-                    minWidth: 150, // Set a minimum width
-                    maxWidth: 350, // Set a maximum width
+                    minWidth: 150,
+                    maxWidth: 350, 
                   ),
                   child: Image.asset(
                     'assets/FitEquipLogo.png',
@@ -109,10 +109,12 @@ class _LoginPage extends State<LoginPage> {
                       loginUser(emailController.text, passController.text);
                       nextPage();
                     },
-                    child: const Text('Enter'),
+                    child: const Text('Enter',
+                    style: TextStyle(color: Colors.black),),
                   )),
               InkWell(
-                  child: Text("Don't have an account? Register here!"),
+                  child: Text("Don't have an account? Register here!",
+                  style: TextStyle(color: Colors.white),),
                   onTap: () {
                     Navigator.push(
                         context,
