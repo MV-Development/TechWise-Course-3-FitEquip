@@ -54,17 +54,17 @@ class _LoginPage extends State<LoginPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
               Flexible(
-                  child: Container(
-                    constraints: BoxConstraints(
-                      minWidth: 150, // Set a minimum width
-                      maxWidth: 350, // Set a maximum width
-                    ),
-                    child: Image.asset(
-                      'assets/FitEquipLogo.png',
-                      fit: BoxFit.contain,
-                    ),
+                child: Container(
+                  constraints: BoxConstraints(
+                    minWidth: 150, // Set a minimum width
+                    maxWidth: 350, // Set a maximum width
+                  ),
+                  child: Image.asset(
+                    'assets/FitEquipLogo.png',
+                    fit: BoxFit.contain,
                   ),
                 ),
+              ),
               InkWell(
                   child: Text('Click here to register'),
                   onTap: () {
@@ -76,7 +76,7 @@ class _LoginPage extends State<LoginPage> {
               Padding(
                   padding: EdgeInsets.symmetric(horizontal: 300, vertical: 15),
                   child: TextField(
-                      controller: passController,
+                      controller: emailController,
                       decoration: InputDecoration(
                         filled: true,
                         fillColor: Colors.white,
@@ -87,7 +87,7 @@ class _LoginPage extends State<LoginPage> {
               Padding(
                   padding: EdgeInsets.symmetric(horizontal: 300, vertical: 15),
                   child: TextField(
-                      controller: emailController,
+                      controller: passController,
                       decoration: InputDecoration(
                         filled: true,
                         fillColor: Colors.white,
