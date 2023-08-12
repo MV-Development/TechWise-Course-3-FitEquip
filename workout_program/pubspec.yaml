@@ -68,9 +68,49 @@ flutter:
   assets:
       - assets/FitEquipLogo.png
       - assets/Rectangle.png
+
+      # EQUIPMENT ICONS:
+      # ab roller by Md Moniruzzaman from <a href="https://thenounproject.com/browse/icons/term/ab-roller/" target="_blank" title="ab roller Icons">Noun Project</a> (CC BY 3.0)
       - assets/equipment/abRoller.png
+      # dumbells by Rama Lemon from <a href="https://thenounproject.com/browse/icons/term/dumbells/" target="_blank" title="dumbells Icons">Noun Project</a> (CC BY 3.0)
       - assets/equipment/dumbbells.png
+      # lat pulldown by Nawicon from <a href="https://thenounproject.com/browse/icons/term/lat-pulldown/" target="_blank" title="lat pulldown Icons">Noun Project</a> (CC BY 3.0)
       - assets/equipment/latPulldown.png
+      # Kettlebells by She3t, llc from <a href="https://thenounproject.com/browse/icons/term/kettlebells/" target="_blank" title="Kettlebells Icons">Noun Project</a> (CC BY 3.0)
+      - assets/equipment/kettlebells.png
+      # skipping rope by Handicon from <a href="https://thenounproject.com/browse/icons/term/skipping-rope/" target="_blank" title="skipping rope Icons">Noun Project</a> (CC BY 3.0)
+      - assets/equipment/jumprope.png
+      # Barbell by Alena Artemova from <a href="https://thenounproject.com/browse/icons/term/barbell/" target="_blank" title="Barbell Icons">Noun Project</a> (CC BY 3.0)
+      - assets/equipment/barbell.png
+      # squat rack by Fahrul Oktaviana from <a href="https://thenounproject.com/browse/icons/term/squat-rack/" target="_blank" title="squat rack Icons">Noun Project</a> (CC BY 3.0)
+      - assets/equipment/squatRack.png
+      # adjustable exercise bench by Oleksandr Panasovskyi from <a href="https://thenounproject.com/browse/icons/term/adjustable-exercise-bench/" target="_blank" title="adjustable exercise bench Icons">Noun Project</a> (CC BY 3.0)
+      - assets/equipment/flatBench.png
+      # Weight bench by Agan24 from <a href="https://thenounproject.com/browse/icons/term/weight-bench/" target="_blank" title="Weight bench Icons">Noun Project</a> (CC BY 3.0)
+      - assets/equipment/inclineBench.png
+      # chest fly machine by Juicy Fish from <a href="https://thenounproject.com/browse/icons/term/chest-fly-machine/" target="_blank" title="chest fly machine Icons">Noun Project</a> (CC BY 3.0)
+      - assets/equipment/pecDeckMachine.png
+      # Leg Extension by firda ardiansyah from <a href="https://thenounproject.com/browse/icons/term/leg-extension/" target="_blank" title="Leg Extension Icons">Noun Project</a> (CC BY 3.0)
+      - assets/equipment/legExtension.png
+      # stepper machine by Juicy Fish from <a href="https://thenounproject.com/browse/icons/term/stepper-machine/" target="_blank" title="stepper machine Icons">Noun Project</a> (CC BY 3.0)
+      - assets/equipment/stairmaster.png
+      # running machine by Juicy Fish from <a href="https://thenounproject.com/browse/icons/term/running-machine/" target="_blank" title="running machine Icons">Noun Project</a> (CC BY 3.0)
+      - assets/equipment/treadmill.png
+      # stationary bike by iconixar from <a href="https://thenounproject.com/browse/icons/term/stationary-bike/" target="_blank" title="stationary bike Icons">Noun Project</a> (CC BY 3.0)
+      - assets/equipment/stationaryBike.png
+      # Rowing Machine by Grégory Montigny from <a href="https://thenounproject.com/browse/icons/term/rowing-machine/" target="_blank" title="Rowing Machine Icons">Noun Project</a> (CC BY 3.0)
+      - assets/equipment/rowingMachine.png
+      # Pull Up Bar by Grégory Montigny from <a href="https://thenounproject.com/browse/icons/term/pull-up-bar/" target="_blank" title="Pull Up Bar Icons">Noun Project</a> (CC BY 3.0)
+      - assets/equipment/pullUpBar.png
+      # cable pulling by Smashing Stocks from <a href="https://thenounproject.com/browse/icons/term/cable-pulling/" target="_blank" title="cable pulling Icons">Noun Project</a> (CC BY 3.0)
+      - assets/equipment/cableMachine.png
+      # mat by Icongeek26 from <a href="https://thenounproject.com/browse/icons/term/mat/" target="_blank" title="mat Icons">Noun Project</a> (CC BY 3.0)
+      - assets/equipment/yogamat.png
+      # Leg Press by Nico Bökenkröger from <a href="https://thenounproject.com/browse/icons/term/leg-press/" target="_blank" title="Leg Press Icons">Noun Project</a> (CC BY 3.0)
+      - assets/equipment/legPressMachine.png
+      # yoga ball by Gregor Cresnar from <a href="https://thenounproject.com/browse/icons/term/yoga-ball/" target="_blank" title="yoga ball Icons">Noun Project</a> (CC BY 3.0)
+      - assets/equipment/stabilityBall.png
+
       # ALL MUSCLE GROUP ICONS: From Noun Project by Chris Wilmes (CC BY 3.0)
       - assets/muscleGroups/arms.png
       - assets/muscleGroups/legs_glutesHamstring.png
@@ -79,8 +119,6 @@ flutter:
       - assets/muscleGroups/back.png
       - assets/muscleGroups/chest.png
       - assets/muscleGroups/core.png
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
