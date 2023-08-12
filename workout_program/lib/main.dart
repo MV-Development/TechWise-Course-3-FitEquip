@@ -57,28 +57,35 @@ class _PartSelectState extends State<PartSelect> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Center(
+        body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(2.0, 0, 2.0, 2.0),
+            child: Image.asset('assets/FitEquipLogo.png', width: 150, height: 100),
+          ),
+          Center(
             child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(18.0),
-              child: Text(
-                'CHOOSE MUSCLE GROUPS:',
-                style: TextStyle(
-                  fontSize: 25,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(18.0),
+                  child: Text(
+                    'CHOOSE MUSCLE GROUPS:',
+                    style: TextStyle(
+                      fontSize: 25,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ),
-              ),
-            ),
             Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [muscleSelect()]),
             SizedBox(height: 18),
             toEquip()
           ],
-        )));
+        ))]));
   }
 
   Column muscleSelect() {
@@ -160,28 +167,35 @@ class _EquipSelect extends State<EquipSelect> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(18.0),
-              child: Text(
-                'SELECT AVAILABLE EQUIPMENT:',
-                style: TextStyle(
-                  fontSize: 25,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
+        body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(2.0, 0, 2.0, 2.0),
+            child: Image.asset('assets/FitEquipLogo.png', width: 150, height: 100),
+          ),
+          Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(18.0),
+                  child: Text(
+                    'SELECT AVAILABLE EQUIPMENT:',
+                    style: TextStyle(
+                      fontSize: 25,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ),
-              ),
-            ),
             Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [exerciseList()]),
             SizedBox(height: 18),
             toExercises(),
           ],
-        )));
+        ))]));
   }
 
   Column exerciseList() {
