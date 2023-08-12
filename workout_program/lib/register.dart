@@ -50,10 +50,6 @@ class _RegisterPage extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-            backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-            title: Text('Register'),
-            leading: Image.asset('assets/FitEquipLogo.png')),
         body: Center(
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,

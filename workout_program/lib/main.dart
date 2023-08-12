@@ -57,11 +57,6 @@ class _PartSelectState extends State<PartSelect> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-          title: const Text("FitEquip"),
-          leading: Image.asset('assets/FitEquipLogo.png'),
-        ),
         body: Center(
             child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -121,7 +116,7 @@ class _PartSelectState extends State<PartSelect> {
                   print(muscleList);
                   buttonsSelect[index] = 1;
                   setState(() {
-                    colorList[index] = Colors.pink;
+                    colorList[index] = Color.fromARGB(255, 242, 66, 127);
                   });
                 } else {
                   buttonsSelect[index] = 0;
@@ -165,7 +160,6 @@ class _EquipSelect extends State<EquipSelect> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: const Text('FitEquip')),
         body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -227,7 +221,7 @@ class _EquipSelect extends State<EquipSelect> {
                   print(equipList);
                   equipChoice[index] = 1;
                   setState(() {
-                    equipColorList[index] = Colors.pink;
+                    equipColorList[index] = Color.fromARGB(255, 242, 66, 127);
                   });
                 } else {
                   equipChoice[index] = 0;
@@ -275,10 +269,10 @@ class _ShowExercises extends State<ShowExercises> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text("Results"),
-          leading: Image.asset('assets/FitEquipLogo.png'),
-        ),
+        //appBar: AppBar(
+        //  title: Text("Results"),
+        //  leading: Image.asset('assets/FitEquipLogo.png'),
+       // ),
         body: const Center(
             child:
                 Column(mainAxisAlignment: MainAxisAlignment.center, children: [
