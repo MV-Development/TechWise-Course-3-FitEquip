@@ -66,9 +66,21 @@ class _PartSelectState extends State<PartSelect> {
             child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Padding(
+              padding: const EdgeInsets.all(18.0),
+              child: Text(
+                'CHOOSE MUSCLE GROUPS:',
+                style: TextStyle(
+                  fontSize: 25,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
             Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [muscleSelect()]),
+            SizedBox(height: 18),
             toEquip()
           ],
         )));
@@ -155,12 +167,25 @@ class _EquipSelect extends State<EquipSelect> {
     return Scaffold(
         appBar: AppBar(title: const Text('FitEquip')),
         body: Center(
-            child: Column(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Padding(
+              padding: const EdgeInsets.all(18.0),
+              child: Text(
+                'SELECT AVAILABLE EQUIPMENT:',
+                style: TextStyle(
+                  fontSize: 25,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
             Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [exerciseList(), toExercises()]),
+                children: [exerciseList()]),
+            SizedBox(height: 18),
+            toExercises(),
           ],
         )));
   }
