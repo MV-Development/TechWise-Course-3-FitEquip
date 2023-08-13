@@ -11,17 +11,14 @@ import 'equip_select.dart';
 import 'exercises.dart';
 
 final muscleList = <String>[];
-final buttonsSelect = List<int>.filled(4, 0);
+final buttonsSelect = List<int>.filled(7, 0);
 var equipList = [""];
-final equipChoice = List<int>.filled(4, 0);
+final equipChoice = List<int>.filled(7, 0);
 var movementList = [];
 final equipColorList = List.filled(4, Colors.white);
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  //await Firebase.initializeApp(
-  // options: DefaultFirebaseOptions.currentPlatform,
-  //);
   runApp(const FitEquip());
 }
 
@@ -57,35 +54,34 @@ class _PartSelectState extends State<PartSelect> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        body: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      Padding(
+        padding: const EdgeInsets.fromLTRB(2.0, 0, 2.0, 2.0),
+        child: Image.asset('assets/FitEquipLogo.png', width: 150, height: 100),
+      ),
+      Center(
+          child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Padding(
-            padding: const EdgeInsets.fromLTRB(2.0, 0, 2.0, 2.0),
-            child: Image.asset('assets/FitEquipLogo.png', width: 150, height: 100),
+            padding: const EdgeInsets.all(18.0),
+            child: Text(
+              'CHOOSE MUSCLE GROUPS:',
+              style: TextStyle(
+                fontSize: 25,
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
           ),
-          Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(18.0),
-                  child: Text(
-                    'CHOOSE MUSCLE GROUPS:',
-                    style: TextStyle(
-                      fontSize: 25,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-            Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [muscleSelect()]),
-            SizedBox(height: 18),
-            toEquip()
-          ],
-        ))]));
+          Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [muscleSelect()]),
+          SizedBox(height: 18),
+          toEquip()
+        ],
+      ))
+    ]));
   }
 
   Column muscleSelect() {
@@ -167,35 +163,34 @@ class _EquipSelect extends State<EquipSelect> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        body: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      Padding(
+        padding: const EdgeInsets.fromLTRB(2.0, 0, 2.0, 2.0),
+        child: Image.asset('assets/FitEquipLogo.png', width: 150, height: 100),
+      ),
+      Center(
+          child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Padding(
-            padding: const EdgeInsets.fromLTRB(2.0, 0, 2.0, 2.0),
-            child: Image.asset('assets/FitEquipLogo.png', width: 150, height: 100),
+            padding: const EdgeInsets.all(18.0),
+            child: Text(
+              'SELECT AVAILABLE EQUIPMENT:',
+              style: TextStyle(
+                fontSize: 25,
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
           ),
-          Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(18.0),
-                  child: Text(
-                    'SELECT AVAILABLE EQUIPMENT:',
-                    style: TextStyle(
-                      fontSize: 25,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-            Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [exerciseList()]),
-            SizedBox(height: 18),
-            toExercises(),
-          ],
-        ))]));
+          Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [exerciseList()]),
+          SizedBox(height: 18),
+          toExercises(),
+        ],
+      ))
+    ]));
   }
 
   Column exerciseList() {
@@ -286,16 +281,16 @@ class _ShowExercises extends State<ShowExercises> {
         //appBar: AppBar(
         //  title: Text("Results"),
         //  leading: Image.asset('assets/FitEquipLogo.png'),
-       // ),
+        // ),
         body: const Center(
             child:
                 Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          ),
-          Text("Hello"),
-          Text("Goodbye")
-        ])));
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      ),
+      Text("Hello"),
+      Text("Goodbye")
+    ])));
   }
 }
 

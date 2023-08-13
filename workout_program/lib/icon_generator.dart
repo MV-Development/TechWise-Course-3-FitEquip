@@ -1,9 +1,12 @@
 class IconGenerator {
   List<List<String>> muscleIcons = [
     ['assets/MuscleGroups/arms.png', 'Arms'],
-    ['assets/muscleGroups/legs_quads.png', 'Legs'],
-    ['assets/muscleGroups/shoulders.png', 'Shoulders'],
-    ['assets/muscleGroups/core.png', 'Abs']
+    ['assets/muscleGroups/back.png', 'Back'],
+    ['assets/muscleGroups/chest.png', 'Chest'],
+    ['assets/muscleGroups/core.png', 'Abs'],
+    ['assets/muscleGroups/legs_glutesHamstrings.png', 'Legs'],
+    //['assets/muscleGroups/legs_quads.png', 'Quads'],
+    ['assets/muscleGroups/shoulders.png', 'Shoulders']
   ];
   List<List<String>> equipIcons = [
     ['assets/equipment/abRoller.png', 'Ab Roller'],
