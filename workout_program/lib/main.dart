@@ -15,7 +15,7 @@ final buttonsSelect = List<int>.filled(7, 0);
 var equipList = [""];
 final equipChoice = List<int>.filled(7, 0);
 var movementList = [];
-final equipColorList = List.filled(4, Colors.white);
+final equipColorList = List.filled(7, Colors.white);
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
@@ -49,7 +49,7 @@ class PartSelect extends StatefulWidget {
 
 class _PartSelectState extends State<PartSelect> {
   var text = 'Exercise';
-  final colorList = List.filled(4, Colors.white);
+  final colorList = List.filled(7, Colors.white);
 
   @override
   Widget build(BuildContext context) {
