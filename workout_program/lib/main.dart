@@ -252,13 +252,10 @@ class _EquipSelect extends State<EquipSelect> {
   ElevatedButton toExercises() {
     return ElevatedButton(
       onPressed: () async {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const ShowExercises()));
         print('button pressed!');
         print("A");
-        getExercises(muscleList, equipList);
         print("Z");
-        print(movementList);
+        getExercisesList(muscleList, equipList, context);
       },
       child: const Text('Next'),
     );
@@ -268,7 +265,10 @@ class _EquipSelect extends State<EquipSelect> {
 //**************************************************************************
 
 class ShowExercises extends StatefulWidget {
-  const ShowExercises({super.key});
+  final finalEquip;
+  final finalMuscle;
+  const ShowExercises({super.key, this.finalEquip, this.finalMuscle});
+
   @override
   State<ShowExercises> createState() => _ShowExercises();
 }
@@ -277,34 +277,44 @@ class _ShowExercises extends State<ShowExercises> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        //appBar: AppBar(
-        //  title: Text("Results"),
-        //  leading: Image.asset('assets/FitEquipLogo.png'),
-        // ),
-        body: const Center(
-            child:
-                Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-      Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      ),
-      Text("Hello"),
-      Text("Goodbye")
-    ])));
+        appBar: AppBar(
+          title: Text("Results"),
+          leading: Image.asset('assets/FitEquipLogo.png'),
+        ),
+        body: Center(
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [for (var item in movementList) Text(item)])));
   }
+}
+
+getExercisesList(var userMuscleList, var userEquipmentList, var context) async {
+  Future<List<dynamic>> tempList =
+      getExercises(userMuscleList, userEquipmentList);
+  List<dynamic> tList = await tempList;
+  print('final list');
+  print(tList);
+  movementList = tList;
+  Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) =>
+              ShowExercises(finalEquip: equipList, finalMuscle: muscleList)));
 }
 
 //***************************************************************************
 // database functionality
-getExercises(var userMuscleList, var userEquipmentList) {
+Future<List<dynamic>> getExercises(
+    var userMuscleList, var userEquipmentList) async {
   FirebaseFirestore database = FirebaseFirestore.instance;
+  var finalList;
   for (var muscle in userMuscleList) {
-    database.collection(muscle).get().then(
+    await database.collection(muscle).get().then(
       (querySnapshot) {
         for (var doc in querySnapshot.docs) {
           if (hasEquipment(userEquipmentList, doc.get("Equipment")) &&
               isNewExercise(movementList, doc.get("Name"))) {
             movementList.add(doc.get("Name"));
-            print(movementList);
           }
         }
         print("All Docs in collection checked");
@@ -314,8 +324,7 @@ getExercises(var userMuscleList, var userEquipmentList) {
     );
   }
   print("All collections checked");
-  print(movementList);
-
+  return movementList;
   //return exerciseList;
 }
 
