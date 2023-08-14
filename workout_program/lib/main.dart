@@ -13,9 +13,9 @@ import 'exercises.dart';
 final muscleList = <String>[];
 final buttonsSelect = List<int>.filled(7, 0);
 var equipList = [""];
-final equipChoice = List<int>.filled(7, 0);
+final equipChoice = List<int>.filled(20, 0);
 var movementList = [];
-final equipColorList = List.filled(7, Colors.white);
+final equipColorList = List.filled(20, Colors.white);
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
@@ -49,7 +49,7 @@ class PartSelect extends StatefulWidget {
 
 class _PartSelectState extends State<PartSelect> {
   var text = 'Exercise';
-  final colorList = List.filled(7, Colors.white);
+  final colorList = List.filled(20, Colors.white);
 
   @override
   Widget build(BuildContext context) {
@@ -195,19 +195,18 @@ class _EquipSelect extends State<EquipSelect> {
 
   Column exerciseList() {
     var icons = IconGenerator();
+    List<Widget> rows = [];
+    for (int i = 0; i < icons.equipIcons.length; i += 6) {
+      List<Widget> rowWidgets = [];
+      for (int j = i; j < i + 6 && j < icons.equipIcons.length; j++) {
+        rowWidgets.add(equipmentIcons(
+            icons.geteURL(j), icons.geteTag(j), j, equipColorList[j]));
+      }
+      rows.add(Row(children: rowWidgets));
+    }
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Row(
-          children: [
-            for (int i = 0; i < icons.equipIcons.length; i++)
-              equipmentIcons(
-                  icons.geteURL(i), icons.geteTag(i), i, equipColorList[i])
-
-            //equipmentIcons('assets/equipment/abRoller', '', 3),
-          ],
-        ),
-      ],
+      children: rows,
     );
   }
 

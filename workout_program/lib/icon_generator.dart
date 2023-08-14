@@ -1,17 +1,35 @@
 class IconGenerator {
   List<List<String>> muscleIcons = [
     ['assets/MuscleGroups/arms.png', 'Arms'],
-    ['assets/muscleGroups/back.png', 'Back'],
-    ['assets/muscleGroups/chest.png', 'Chest'],
+    ['assets/muscleGroups/legs_quads.png', 'Legs'],
+    ['assets/muscleGroups/shoulders.png', 'Shoulders'],
     ['assets/muscleGroups/core.png', 'Abs'],
-    ['assets/muscleGroups/legs_glutesHamstrings.png', 'Legs'],
-    //['assets/muscleGroups/legs_quads.png', 'Quads'],
-    ['assets/muscleGroups/shoulders.png', 'Shoulders']
+    ['assets/muscleGroups/chest.png', 'Chest'],
+    ['assets/muscleGroups/legs_glutesHamstring.png', 'Legs-Glutes & Hamstrings'],
+    ['assets/muscleGroups/back.png', 'Back'],
   ];
+
   List<List<String>> equipIcons = [
     ['assets/equipment/abRoller.png', 'Ab Roller'],
     ['assets/equipment/dumbbells.png', 'Dumbbells'],
     ['assets/equipment/latPulldown.png', 'Lat Pulldown'],
+    ['assets/equipment/barbell.png', 'Barbell'],
+    ['assets/equipment/kettlebells.png', 'Kettlebells'],
+    ['assets/equipment/squatRack.png', 'Squat Rack'],
+    ['assets/equipment/flatBench.png', 'Flat Bench'],
+    ['assets/equipment/inclineBench.png', 'Incline Bench'],
+    ['assets/equipment/pecDeckMachine.png', 'Pec Deck Machine'],
+    ['assets/equipment/legExtension.png', 'Leg Extension'],
+    ['assets/equipment/legPressMachine.png', 'Leg Press Machine'],
+    ['assets/equipment/jumprope.png', 'Jump Rope'],
+    ['assets/equipment/stairmaster.png', 'Stair Master'],
+    ['assets/equipment/treadmill.png', 'Treadmill'],
+    ['assets/equipment/stationaryBike.png', 'Stationary Bike'],
+    ['assets/equipment/rowingMachine.png', 'Rowing Machine'],
+    ['assets/equipment/pullUpBar.png', 'Pull Up Bar'],
+    ['assets/equipment/cableMachine.png', 'Cable Machine'],
+    ['assets/equipment/yogamat.png', 'Yoga Mat'],
+    ['assets/equipment/stabilityBall.png', 'Stability Ball']
   ];
 
   String getmURL(index) {
