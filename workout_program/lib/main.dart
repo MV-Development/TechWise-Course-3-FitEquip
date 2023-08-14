@@ -277,14 +277,49 @@ class _ShowExercises extends State<ShowExercises> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text("Results"),
-          leading: Image.asset('assets/FitEquipLogo.png'),
-        ),
-        body: Center(
-            child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [for (var item in movementList) Text(item)])));
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start, 
+          children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(2.0, 0, 2.0, 2.0),
+                child: Image.asset('assets/FitEquipLogo.png', width: 150, height: 100),
+              ),
+            SizedBox(height: 18.0),
+            Center (
+              child: Text(
+              "RECOMMENDED EXERCISES:", 
+              style: TextStyle(
+                fontSize: 25,
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            ),
+            SizedBox(height: 18),
+          Center(
+            child: Stack(
+              alignment: Alignment.center, 
+              children: [
+                Container(
+                  width: 400, 
+                  height: 350,
+                  color: Colors.white, 
+                ),
+                Container(
+                  padding: EdgeInsets.all(16.0), 
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      for (var item in movementList) Text(item),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
 
