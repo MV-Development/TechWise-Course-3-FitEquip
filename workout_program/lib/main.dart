@@ -310,7 +310,12 @@ class _ShowExercises extends State<ShowExercises> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      for (var item in movementList) Text(item),
+                      for (var item in movementList) 
+                      Text(item, style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                      ),),
                     ],
                   ),
                 ),
