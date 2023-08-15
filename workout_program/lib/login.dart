@@ -60,72 +60,76 @@ class _LoginPage extends State<LoginPage> {
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-              Flexible(
-                child: Container(
-                  constraints: BoxConstraints(
-                    minWidth: 150,
-                    maxWidth: 350, 
-                  ),
-                  child: Image.asset(
-                    'assets/FitEquipLogo.png',
-                    fit: BoxFit.contain,
-                  ),
-                ),
+          Flexible(
+            child: Container(
+              constraints: BoxConstraints(
+                minWidth: 150,
+                maxWidth: 350,
               ),
-              Text(
-                'Log In',
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                ),
+              child: Image.asset(
+                'assets/FitEquipLogo.png',
+                fit: BoxFit.contain,
               ),
-              Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 300, vertical: 15),
-                  child: TextField(
-                      controller: emailController,
-                      decoration: InputDecoration(
-                        filled: true,
-                        fillColor: Colors.white,
-                        border: OutlineInputBorder(),
-                        labelText: 'Email',
-                        hintText: 'Enter valid email, ex: abcd@gmail.com',
-                      ))),
-              Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 300, vertical: 15),
-                  child: TextField(
-                      controller: passController,
-                      obscureText: true,
-                      enableSuggestions: false,
-                      autocorrect: false,
-                      decoration: InputDecoration(
-                        filled: true,
-                        fillColor: Colors.white,
-                        border: OutlineInputBorder(),
-                        labelText: 'Password',
-                        hintText: 'Enter valid password',
-                      ))),
-              Text(alertMessage),
-              Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 500, vertical: 15),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      print('button pressed!');
-                      loginUser(emailController.text, passController.text);
-                    },
-                    child: const Text('Enter',
-                    style: TextStyle(color: Colors.black),),
-                  )),
-              InkWell(
-                  child: Text("Don't have an account? Register here!",
-                  style: TextStyle(color: Colors.white),),
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const RegisterPage()));
-                  }),
-            ])));
+            ),
+          ),
+          Text(
+            'Log In',
+            style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+            ),
+          ),
+          Padding(
+              padding: EdgeInsets.symmetric(horizontal: 300, vertical: 15),
+              child: TextField(
+                  controller: emailController,
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.white,
+                    border: OutlineInputBorder(),
+                    labelText: 'Email',
+                    hintText: 'Enter valid email, ex: abcd@gmail.com',
+                  ))),
+          Padding(
+              padding: EdgeInsets.symmetric(horizontal: 300, vertical: 15),
+              child: TextField(
+                  controller: passController,
+                  obscureText: true,
+                  enableSuggestions: false,
+                  autocorrect: false,
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.white,
+                    border: OutlineInputBorder(),
+                    labelText: 'Password',
+                    hintText: 'Enter valid password',
+                  ))),
+          Text(alertMessage),
+          Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 500, vertical: 15),
+              child: ElevatedButton(
+                onPressed: () {
+                  print('button pressed!');
+                  loginUser(emailController.text, passController.text);
+                },
+                child: const Text(
+                  'Enter',
+                  style: TextStyle(color: Colors.black),
+                ),
+              )),
+          InkWell(
+              child: Text(
+                "Don't have an account? Register here!",
+                style: TextStyle(color: Colors.white),
+              ),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const RegisterPage()));
+              }),
+        ])));
   }
 }
