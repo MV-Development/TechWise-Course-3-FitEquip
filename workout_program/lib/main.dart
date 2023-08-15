@@ -274,6 +274,13 @@ class ShowExercises extends StatefulWidget {
 }
 
 class _ShowExercises extends State<ShowExercises> {
+
+  void toMuscleSelection(BuildContext context){
+    Navigator.push(context, 
+      MaterialPageRoute(builder: (context) => const PartSelect()),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -322,10 +329,22 @@ class _ShowExercises extends State<ShowExercises> {
               ],
             ),
           ),
+          SizedBox(height: 18),
+
+          Center(
+            child: ElevatedButton(
+              onPressed: () {
+                toMuscleSelection(context);
+              },
+              child: Text('Make a New Workout'),
+            ),
+          )
         ],
       ),
     );
   }
+
+  
 }
 
 getExercisesList(var userMuscleList, var userEquipmentList, var context) async {
