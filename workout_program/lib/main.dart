@@ -10,7 +10,7 @@ import 'muscle_select.dart';
 import 'equip_select.dart';
 import 'exercises.dart';
 
-final muscleList = <String>[];
+var muscleList = <String>[];
 final buttonsSelect = List<int>.filled(7, 0);
 var equipList = [""];
 final equipChoice = List<int>.filled(20, 0);
@@ -274,9 +274,9 @@ class ShowExercises extends StatefulWidget {
 }
 
 class _ShowExercises extends State<ShowExercises> {
-
-  void toMuscleSelection(BuildContext context){
-    Navigator.push(context, 
+  void toMuscleSelection(BuildContext context) {
+    Navigator.push(
+      context,
       MaterialPageRoute(builder: (context) => const PartSelect()),
     );
   }
@@ -284,45 +284,49 @@ class _ShowExercises extends State<ShowExercises> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.start, 
-          children: [
-              Padding(
-                padding: const EdgeInsets.fromLTRB(2.0, 0, 2.0, 2.0),
-                child: Image.asset('assets/FitEquipLogo.png', width: 150, height: 100),
-              ),
-            SizedBox(height: 18.0),
-            Center (
-              child: Text(
-              "RECOMMENDED EXERCISES:", 
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(2.0, 0, 2.0, 2.0),
+            child:
+                Image.asset('assets/FitEquipLogo.png', width: 150, height: 100),
+          ),
+          SizedBox(height: 18.0),
+          Center(
+            child: Text(
+              "RECOMMENDED EXERCISES:",
               style: TextStyle(
                 fontSize: 25,
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            ),
-            SizedBox(height: 18),
+          ),
+          SizedBox(height: 18),
           Center(
             child: Stack(
-              alignment: Alignment.center, 
+              alignment: Alignment.center,
               children: [
                 Container(
-                  width: 400, 
+                  width: 400,
                   height: 350,
-                  color: Colors.white, 
+                  color: Colors.white,
                 ),
                 Container(
-                  padding: EdgeInsets.all(16.0), 
+                  padding: EdgeInsets.all(16.0),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      for (var item in movementList) 
-                      Text(item, style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                      ),),
+                      for (var item in movementList)
+                        Text(
+                          item,
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                     ],
                   ),
                 ),
@@ -330,10 +334,12 @@ class _ShowExercises extends State<ShowExercises> {
             ),
           ),
           SizedBox(height: 18),
-
           Center(
             child: ElevatedButton(
               onPressed: () {
+                muscleList = [];
+                equipList = [""];
+                movementList = [];
                 toMuscleSelection(context);
               },
               child: Text('Make a New Workout'),
@@ -343,8 +349,6 @@ class _ShowExercises extends State<ShowExercises> {
       ),
     );
   }
-
-  
 }
 
 getExercisesList(var userMuscleList, var userEquipmentList, var context) async {
