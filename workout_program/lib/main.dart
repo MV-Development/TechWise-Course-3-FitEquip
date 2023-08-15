@@ -375,8 +375,8 @@ Future<List<dynamic>> getExercises(
     await database.collection(muscle).get().then(
       (querySnapshot) {
         for (var doc in querySnapshot.docs) {
-          if (hasEquipment(userEquipmentList, doc.get("Equipment")) &&
-              isNewExercise(movementList, doc.get("Name"))) {
+          if (isNewExercise(movementList, doc.get("Name")) &&
+              hasEquipment(userEquipmentList, doc.get("Equipment"))) {
             movementList.add(doc.get("Name"));
           }
         }
