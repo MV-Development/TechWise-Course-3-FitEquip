@@ -5,7 +5,7 @@ class IconGenerator {
     ['assets/muscleGroups/shoulders.png', 'Shoulders'],
     ['assets/muscleGroups/core.png', 'Abs'],
     ['assets/muscleGroups/chest.png', 'Chest'],
-    ['assets/muscleGroups/legs_glutesHamstring.png', 'Legs-Glutes & Hamstrings'],
+    //['assets/muscleGroups/legs_glutesHamstring.png', 'Legs-Glutes & Hamstrings'],
     ['assets/muscleGroups/back.png', 'Back'],
   ];
 
