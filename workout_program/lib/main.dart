@@ -86,17 +86,18 @@ class _PartSelectState extends State<PartSelect> {
 
   Column muscleSelect() {
     var icons = IconGenerator();
+    List<Widget> rows = [];
+    for (int i = 0; i < icons.muscleIcons.length; i += 2) {
+      List<Widget> rowWidgets = [];
+      for (int j = i; j < i + 2 && j < icons.muscleIcons.length; j++) {
+        rowWidgets.add(muscleGroupIcons(
+            icons.getmURL(j), icons.getmTag(j), j, colorList[j]));
+      }
+      rows.add(Row(children: rowWidgets));
+    }
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Row(
-          children: [
-            for (int i = 0; i < icons.muscleIcons.length; i++)
-              muscleGroupIcons(
-                  icons.getmURL(i), icons.getmTag(i), i, colorList[i])
-          ],
-        ),
-      ],
+      children: rows,
     );
   }
 
