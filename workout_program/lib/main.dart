@@ -11,7 +11,7 @@ import 'equip_select.dart';
 import 'exercises.dart';
 
 var muscleList = <String>[];
-var buttonsSelect = List<int>.filled(6, 0);
+var buttonsSelect = List<int>.filled(7, 0);
 var equipList = [""];
 var equipChoice = List<int>.filled(20, 0);
 var movementList = [];
@@ -337,12 +337,6 @@ class _ShowExercises extends State<ShowExercises> {
           Center(
             child: ElevatedButton(
               onPressed: () {
-                muscleList = <String>[];
-                buttonsSelect = List<int>.filled(7, 0);
-                equipList = [""];
-                equipChoice = List<int>.filled(20, 0);
-                movementList = [];
-                equipColorList = List.filled(20, Colors.white);
                 toMuscleSelection(context);
               },
               child: Text('Make a New Workout'),
@@ -378,8 +372,8 @@ Future<List<dynamic>> getExercises(
     await database.collection(muscle).get().then(
       (querySnapshot) {
         for (var doc in querySnapshot.docs) {
-          if (isNewExercise(movementList, doc.get("Name")) &&
-              hasEquipment(userEquipmentList, doc.get("Equipment"))) {
+          if (hasEquipment(userEquipmentList, doc.get("Equipment")) &&
+              isNewExercise(movementList, doc.get("Name"))) {
             movementList.add(doc.get("Name"));
           }
         }
