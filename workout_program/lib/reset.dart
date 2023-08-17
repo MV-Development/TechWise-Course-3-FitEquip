@@ -1,56 +1,33 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:workout_program/login.dart';
+
+import 'main.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'icon_generator.dart';
-import 'register.dart';
-import 'reset.dart';
-import 'database_functionality.dart';
-import 'muscle_select.dart';
-import 'equip_select.dart';
-import 'exercises.dart';
-import 'main.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key, required this.title});
-  final String title;
+class ResetPassword extends StatefulWidget {
+  const ResetPassword({super.key});
   @override
-  State<LoginPage> createState() => _LoginPage();
+  State<ResetPassword> createState() => _ResetPassword();
 }
 
-class _LoginPage extends State<LoginPage> {
+class _ResetPassword extends State<ResetPassword> {
   final emailController = TextEditingController();
-  final passController = TextEditingController();
   var alertMessage = '';
-  loginUser(email, password) async {
+  sendReset(email) async {
     try {
-      final credential = await FirebaseAuth.instance
-          .signInWithEmailAndPassword(email: email, password: password);
-      nextPage();
+      final resEmail =
+          await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
     } on FirebaseAuthException catch (e) {
-      if (e.code == 'user-not-found') {
+      if (e.code == 'user-notfound') {
         setState(() {
           alertMessage = 'No user found for that email.';
         });
-      } else if (e.code == 'wrong-password') {
-        setState(() {
-          alertMessage = 'Wrong password provided for that user.';
-        });
       }
     }
-  }
-
-  nextPage() async {
-    FirebaseAuth.instance.authStateChanges().listen((User? user) {
-      if (user == null) {
-        print('user signed in');
-      } else {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const PartSelect()));
-      }
-    });
   }
 
   @override
@@ -73,7 +50,7 @@ class _LoginPage extends State<LoginPage> {
             ),
           ),
           Text(
-            'Log In',
+            'Reset Password',
             style: TextStyle(
               fontSize: 24,
               fontWeight: FontWeight.bold,
@@ -92,27 +69,12 @@ class _LoginPage extends State<LoginPage> {
                     hintText: 'Enter valid email, ex: abcd@gmail.com',
                   ))),
           Padding(
-              padding: EdgeInsets.symmetric(horizontal: 300, vertical: 15),
-              child: TextField(
-                  controller: passController,
-                  obscureText: true,
-                  enableSuggestions: false,
-                  autocorrect: false,
-                  decoration: InputDecoration(
-                    filled: true,
-                    fillColor: Colors.white,
-                    border: OutlineInputBorder(),
-                    labelText: 'Password',
-                    hintText: 'Enter valid password',
-                  ))),
-          Text(alertMessage),
-          Padding(
               padding:
                   const EdgeInsets.symmetric(horizontal: 500, vertical: 15),
               child: ElevatedButton(
                 onPressed: () {
                   print('button pressed!');
-                  loginUser(emailController.text, passController.text);
+                  sendReset(emailController.text);
                 },
                 child: const Text(
                   'Enter',
@@ -121,25 +83,14 @@ class _LoginPage extends State<LoginPage> {
               )),
           InkWell(
               child: Text(
-                "Don't have an account? Register here!",
+                "Click here to login",
                 style: TextStyle(color: Colors.white),
               ),
               onTap: () {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const RegisterPage()));
-              }),
-          InkWell(
-              child: Text(
-                "Forgot Password?",
-                style: TextStyle(color: Colors.white),
-              ),
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const ResetPassword()));
+                        builder: (context) => LoginPage(title: 'FitEquip')));
               })
         ])));
   }
