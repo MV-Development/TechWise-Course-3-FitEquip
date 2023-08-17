@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'icon_generator.dart';
-import 'register.dart';
+//import 'package:firebase_auth/firebase_auth.dart';
+//import 'package:cloud_firestore/cloud_firestore.dart';
+//import 'icon_generator.dart';
+//import 'register.dart';
 import 'login.dart';
-import 'database_functionality.dart';
-import 'muscle_select.dart';
-import 'equip_select.dart';
-import 'exercises.dart';
+//import 'database_functionality.dart';
+//import 'muscle_select.dart';
+//import 'equip_select.dart';
+//import 'exercises.dart';
 
-var muscleList = <String>[];
-var buttonsSelect = List<int>.filled(7, 0);
-var equipList = [""];
-var equipChoice = List<int>.filled(20, 0);
+//var muscleList = <String>[];
+//var buttonsSelect = List<int>.filled(7, 0);
+//var equipList = [""];
+//var equipChoice = List<int>.filled(20, 0);
 var movementList = [];
-var equipColorList = List.filled(20, Colors.white);
-void main() async {
+//var equipColorList = List.filled(20, Colors.white);
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const FitEquip());
@@ -40,7 +41,7 @@ class FitEquip extends StatelessWidget {
 }
 
 //***************************************************************************
-
+/*
 class PartSelect extends StatefulWidget {
   const PartSelect({super.key});
   @override
@@ -102,7 +103,7 @@ class _PartSelectState extends State<PartSelect> {
   }
 
   Widget muscleGroupIcons(
-    String imagePath, String label, int index, var curColor) {
+      String imagePath, String label, int index, var curColor) {
     return Column(
       children: [
         Stack(
@@ -117,7 +118,6 @@ class _PartSelectState extends State<PartSelect> {
               onPressed: () {
                 if (buttonsSelect[index] == 0) {
                   muscleList.add(label.toLowerCase());
-                  print(muscleList);
                   buttonsSelect[index] = 1;
                   setState(() {
                     colorList[index] = Color.fromARGB(255, 242, 66, 127);
@@ -125,7 +125,6 @@ class _PartSelectState extends State<PartSelect> {
                 } else {
                   buttonsSelect[index] = 0;
                   muscleList.removeWhere((item) => item == label.toLowerCase());
-                  print(muscleList);
                   setState(() {
                     colorList[index] = Colors.white;
                   });
@@ -136,7 +135,9 @@ class _PartSelectState extends State<PartSelect> {
           ],
         ),
         Text(label,
-            style: TextStyle(color: Colors.white,)),
+            style: TextStyle(
+              color: Colors.white,
+            )),
       ],
     );
   }
@@ -146,15 +147,14 @@ class _PartSelectState extends State<PartSelect> {
       onPressed: () {
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => const EquipSelect()));
-        //print('button pressed!');
       },
       child: const Text('Next'),
     );
   }
 }
-
+*/
 //***************************************************************************
-
+/*
 class EquipSelect extends StatefulWidget {
   const EquipSelect({super.key});
   @override
@@ -171,8 +171,8 @@ class _EquipSelect extends State<EquipSelect> {
         child: Image.asset('assets/FitEquipLogo.png', width: 150, height: 100),
       ),
       Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Padding(
             padding: const EdgeInsets.all(18.0),
@@ -228,7 +228,6 @@ class _EquipSelect extends State<EquipSelect> {
               onPressed: () {
                 if (equipChoice[index] == 0) {
                   equipList.add(label.toLowerCase());
-                  print(equipList);
                   equipChoice[index] = 1;
                   setState(() {
                     equipColorList[index] = Color.fromARGB(255, 242, 66, 127);
@@ -236,7 +235,6 @@ class _EquipSelect extends State<EquipSelect> {
                 } else {
                   equipChoice[index] = 0;
                   equipList.removeWhere((item) => item == label.toLowerCase());
-                  print(equipList);
                   setState(() {
                     equipColorList[index] = Colors.white;
                   });
@@ -247,7 +245,9 @@ class _EquipSelect extends State<EquipSelect> {
           ],
         ),
         Text(label,
-            style: TextStyle(color: Colors.white,)),
+            style: TextStyle(
+              color: Colors.white,
+            )),
       ],
     );
   }
@@ -255,18 +255,15 @@ class _EquipSelect extends State<EquipSelect> {
   ElevatedButton toExercises() {
     return ElevatedButton(
       onPressed: () async {
-        print('button pressed!');
-        print("A");
-        print("Z");
         getExercisesList(muscleList, equipList, context);
       },
       child: const Text('Next'),
     );
   }
 }
-
+*/
 //**************************************************************************
-
+/*
 class ShowExercises extends StatefulWidget {
   final finalEquip;
   final finalMuscle;
@@ -282,10 +279,6 @@ class _ShowExercises extends State<ShowExercises> {
       context,
       MaterialPageRoute(builder: (context) => const PartSelect()),
     );
-  }
-
-  void saveWorkout() {
-    print('Workout has been saved');
   }
 
   @override
@@ -344,26 +337,29 @@ class _ShowExercises extends State<ShowExercises> {
           Center(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-            ElevatedButton(
-              onPressed: () {
-                muscleList = <String>[];
-                buttonsSelect = List<int>.filled(7, 0);
-                equipList = [""];
-                equipChoice = List<int>.filled(20, 0);
-                movementList = [];
-                equipColorList = List.filled(20, Colors.white);
-                toMuscleSelection(context);
-              },
-              child: Text('Make a New Workout'),
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    muscleList = <String>[];
+                    buttonsSelect = List<int>.filled(7, 0);
+                    equipList = [""];
+                    equipChoice = List<int>.filled(20, 0);
+                    movementList = [];
+                    equipColorList = List.filled(20, Colors.white);
+                    toMuscleSelection(context);
+                  },
+                  child: Text('Make a New Workout'),
+                ),
+                SizedBox(width: 18),
+                ElevatedButton(
+                  onPressed: () async {
+                    print("Save button pressed");
+                    await saveWorkout(movementList);
+                  },
+                  child: Text('Save This Workout'),
+                ),
+              ],
             ),
-          SizedBox(width: 18),
-            ElevatedButton(
-              onPressed: saveWorkout,
-              child: Text('Save This Workout'),
-            ),
-        ],
-        ),
           ),
         ],
       ),
@@ -375,8 +371,6 @@ getExercisesList(var userMuscleList, var userEquipmentList, var context) async {
   Future<List<dynamic>> tempList =
       getExercises(userMuscleList, userEquipmentList);
   List<dynamic> tList = await tempList;
-  print('final list');
-  print(tList);
   movementList = tList;
   Navigator.push(
       context,
@@ -384,33 +378,32 @@ getExercisesList(var userMuscleList, var userEquipmentList, var context) async {
           builder: (context) =>
               ShowExercises(finalEquip: equipList, finalMuscle: muscleList)));
 }
-
+*/
 //***************************************************************************
 // database functionality
+
+/*
 Future<List<dynamic>> getExercises(
     var userMuscleList, var userEquipmentList) async {
   FirebaseFirestore database = FirebaseFirestore.instance;
-  var finalList;
   for (var muscle in userMuscleList) {
     await database.collection(muscle).get().then(
       (querySnapshot) {
         for (var doc in querySnapshot.docs) {
-          if (hasEquipment(userEquipmentList, doc.get("Equipment")) &&
-              isNewExercise(movementList, doc.get("Name"))) {
-            movementList.add(doc.get("Name"));
+          if (isNewExercise(movementList, doc.get("Name"))) {
+            if (hasEquipment(userEquipmentList, doc.get("Equipment"))) {
+              movementList.add(doc.get("Name"));
+            }
           }
         }
-        print("All Docs in collection checked");
-        print(movementList);
       },
       onError: (e) => print("Error completing: $e"),
     );
   }
-  print("All collections checked");
   return movementList;
-  //return exerciseList;
 }
-
+*/
+/*
 hasEquipment(userEquipment, exerciseEquipment) {
   for (var item in exerciseEquipment) {
     if (!userEquipment.contains(item)) {
@@ -419,7 +412,33 @@ hasEquipment(userEquipment, exerciseEquipment) {
   }
   return true;
 }
-
+*/
+/*
 isNewExercise(exerciseList, newExercise) {
   return !exerciseList.contains(newExercise);
 }
+*/
+//***************************************************************************
+// save workouts functionality
+/*
+Future<void> saveWorkout() async {
+  FirebaseFirestore db = FirebaseFirestore.instance;
+  var userID = await getUserID();
+  // Add a new document with a generated id.
+  final data = {"Name": "testWrite02", "Movements": movementList};
+
+  db.collection("users").doc(userID).collection('workouts').add(data).then(
+      (documentSnapshot) =>
+          print("Added Data with ID: ${documentSnapshot.id}"));
+}
+*/
+/*
+Future<String> getUserID() async {
+  return await getUID();
+}
+*/
+/*
+getUID() async {
+  return FirebaseAuth.instance.currentUser?.uid;
+}
+*/

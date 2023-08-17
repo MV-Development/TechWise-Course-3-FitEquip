@@ -1,18 +1,16 @@
-/*
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'icon_generator.dart';
-import 'register.dart';
-import 'login.dart';
-import 'database_functionality.dart';
-import 'muscle_select.dart';
 import 'exercises.dart';
-import 'main.dart';
+
+var equipList = [""];
+var equipChoice = List<int>.filled(20, 0);
+var equipColorList = List.filled(20, Colors.white);
+
+//***************************************************************************
 
 class EquipSelect extends StatefulWidget {
-  const EquipSelect({super.key});
+  final muscleList;
+  const EquipSelect({super.key, this.muscleList});
   @override
   State<EquipSelect> createState() => _EquipSelect();
 }
@@ -21,33 +19,50 @@ class _EquipSelect extends State<EquipSelect> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: const Text('FitEquip')),
-        body: Center(
-            child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [exerciseList(), toExercises()]),
-          ],
-        )));
+        body: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      Padding(
+        padding: const EdgeInsets.fromLTRB(2.0, 0, 2.0, 2.0),
+        child: Image.asset('assets/FitEquipLogo.png', width: 150, height: 100),
+      ),
+      Center(
+          child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(18.0),
+            child: Text(
+              'SELECT AVAILABLE EQUIPMENT:',
+              style: TextStyle(
+                fontSize: 25,
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [exerciseList()]),
+          SizedBox(height: 18),
+          toExercises(),
+        ],
+      ))
+    ]));
   }
 
   Column exerciseList() {
     var icons = IconGenerator();
+    List<Widget> rows = [];
+    for (int i = 0; i < icons.equipIcons.length; i += 6) {
+      List<Widget> rowWidgets = [];
+      for (int j = i; j < i + 6 && j < icons.equipIcons.length; j++) {
+        rowWidgets.add(equipmentIcons(
+            icons.geteURL(j), icons.geteTag(j), j, equipColorList[j]));
+      }
+      rows.add(Row(children: rowWidgets));
+    }
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Row(
-          children: [
-            for (int i = 0; i < icons.equipIcons.length; i++)
-              equipmentIcons(
-                  icons.geteURL(i), icons.geteTag(i), i, equipColorList[i])
-
-            //equipmentIcons('assets/equipment/abRoller', '', 3),
-          ],
-        ),
-      ],
+      children: rows,
     );
   }
 
@@ -67,15 +82,13 @@ class _EquipSelect extends State<EquipSelect> {
               onPressed: () {
                 if (equipChoice[index] == 0) {
                   equipList.add(label.toLowerCase());
-                  print(equipList);
                   equipChoice[index] = 1;
                   setState(() {
-                    equipColorList[index] = Colors.pink;
+                    equipColorList[index] = Color.fromARGB(255, 242, 66, 127);
                   });
                 } else {
                   equipChoice[index] = 0;
                   equipList.removeWhere((item) => item == label.toLowerCase());
-                  print(equipList);
                   setState(() {
                     equipColorList[index] = Colors.white;
                   });
@@ -85,21 +98,32 @@ class _EquipSelect extends State<EquipSelect> {
             ),
           ],
         ),
-        Text(label),
+        Text(label,
+            style: TextStyle(
+              color: Colors.white,
+            )),
       ],
     );
   }
 
   ElevatedButton toExercises() {
     return ElevatedButton(
-      onPressed: () {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const ShowExercises()));
-        //print('button pressed!');
-        //var data = database_functionality();
+      onPressed: () async {
+        getExercisesList(muscleList, equipList, context);
       },
       child: const Text('Next'),
     );
   }
 }
-*/
+
+getExercisesList(var userMuscleList, var userEquipmentList, var context) async {
+  Future<List<dynamic>> tempList =
+      getExercises(userMuscleList, userEquipmentList);
+  List<dynamic> tList = await tempList;
+  var movementList = tList;
+  Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) =>
+              ShowExercises(finalEquip: equipList, finalMuscle: muscleList)));
+}
