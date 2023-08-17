@@ -342,7 +342,10 @@ class _ShowExercises extends State<ShowExercises> {
           ),
           SizedBox(height: 18),
           Center(
-            child: ElevatedButton(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+            ElevatedButton(
               onPressed: () {
                 muscleList = <String>[];
                 buttonsSelect = List<int>.filled(7, 0);
@@ -354,12 +357,14 @@ class _ShowExercises extends State<ShowExercises> {
               },
               child: Text('Make a New Workout'),
             ),
-          ),
-          Center(
-            child: ElevatedButton(
+          SizedBox(width: 18),
+            ElevatedButton(
               onPressed: saveWorkout,
-              child: Text('Save Workout'),
-            ),)
+              child: Text('Save This Workout'),
+            ),
+        ],
+        ),
+          ),
         ],
       ),
     );
