@@ -1,4 +1,3 @@
-// ignore_for_file: prefer_const_constructors
 import 'package:flutter/material.dart';
 import 'login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -15,7 +14,7 @@ class _RegisterPage extends State<RegisterPage> {
   var alertMessage = '';
   registerUser(email, password) async {
     try {
-      /*final credential =*/ await FirebaseAuth.instance
+      await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
       setState(() {
         alertMessage = 'Success!';

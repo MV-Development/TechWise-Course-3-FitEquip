@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
 import 'database_functionality.dart';
 import 'muscle_select.dart';
-
-//**************************************************************************
+import 'session_data.dart';
 
 class ShowExercises extends StatefulWidget {
-  final finalEquip;
-  final finalMuscle;
-  final movementList;
-  const ShowExercises(
-      {super.key, this.finalEquip, this.finalMuscle, this.movementList});
+  const ShowExercises({super.key});
 
   @override
   State<ShowExercises> createState() => _ShowExercises();

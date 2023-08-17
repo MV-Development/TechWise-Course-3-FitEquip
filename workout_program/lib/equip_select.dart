@@ -1,16 +1,11 @@
 import 'package:flutter/material.dart';
 import 'icon_generator.dart';
 import 'exercises.dart';
-
-var equipList = [""];
-var equipChoice = List<int>.filled(20, 0);
-var equipColorList = List.filled(20, Colors.white);
-
-//***************************************************************************
+import 'session_data.dart';
+import 'database_functionality.dart';
 
 class EquipSelect extends StatefulWidget {
-  final muscleList;
-  const EquipSelect({super.key, this.muscleList});
+  const EquipSelect({super.key});
   @override
   State<EquipSelect> createState() => _EquipSelect();
 }
@@ -120,10 +115,7 @@ getExercisesList(var userMuscleList, var userEquipmentList, var context) async {
   Future<List<dynamic>> tempList =
       getExercises(userMuscleList, userEquipmentList);
   List<dynamic> tList = await tempList;
-  var movementList = tList;
+  movementList = tList;
   Navigator.push(
-      context,
-      MaterialPageRoute(
-          builder: (context) =>
-              ShowExercises(finalEquip: equipList, finalMuscle: muscleList)));
+      context, MaterialPageRoute(builder: (context) => ShowExercises()));
 }

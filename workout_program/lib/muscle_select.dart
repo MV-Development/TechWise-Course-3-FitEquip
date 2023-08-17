@@ -1,27 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:workout_program/session_data.dart';
 import 'icon_generator.dart';
 import 'equip_select.dart';
-
-var muscleList = <String>[];
-var buttonsSelect = List<int>.filled(7, 0);
-
-//***************************************************************************
 
 class PartSelect extends StatefulWidget {
   const PartSelect({super.key});
   @override
   State<PartSelect> createState() => _PartSelectState();
-}
-
-class ShowExercises extends StatefulWidget {
-  final finalEquip;
-  final finalMuscle;
-  final movementList;
-  const ShowExercises(
-      {super.key, this.finalEquip, this.finalMuscle, this.movementList});
-
-  @override
-  State<ShowExercises> createState() => _ShowExercises();
 }
 
 class _PartSelectState extends State<PartSelect> {
