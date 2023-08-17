@@ -102,7 +102,7 @@ class _PartSelectState extends State<PartSelect> {
   }
 
   Widget muscleGroupIcons(
-      String imagePath, String label, int index, var curColor) {
+    String imagePath, String label, int index, var curColor) {
     return Column(
       children: [
         Stack(
@@ -135,7 +135,8 @@ class _PartSelectState extends State<PartSelect> {
             ),
           ],
         ),
-        Text(label),
+        Text(label,
+            style: TextStyle(color: Colors.white,)),
       ],
     );
   }
@@ -170,8 +171,8 @@ class _EquipSelect extends State<EquipSelect> {
         child: Image.asset('assets/FitEquipLogo.png', width: 150, height: 100),
       ),
       Center(
-          child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Padding(
             padding: const EdgeInsets.all(18.0),
@@ -245,7 +246,8 @@ class _EquipSelect extends State<EquipSelect> {
             ),
           ],
         ),
-        Text(label),
+        Text(label,
+            style: TextStyle(color: Colors.white,)),
       ],
     );
   }
@@ -280,6 +282,10 @@ class _ShowExercises extends State<ShowExercises> {
       context,
       MaterialPageRoute(builder: (context) => const PartSelect()),
     );
+  }
+
+  void saveWorkout() {
+    print('Workout has been saved');
   }
 
   @override
@@ -342,7 +348,12 @@ class _ShowExercises extends State<ShowExercises> {
               },
               child: Text('Make a New Workout'),
             ),
-          )
+          ),
+          Center(
+            child: ElevatedButton(
+              onPressed: saveWorkout,
+              child: Text('Save Workout'),
+            ),)
         ],
       ),
     );
