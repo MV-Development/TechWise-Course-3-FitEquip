@@ -338,6 +338,12 @@ class _ShowExercises extends State<ShowExercises> {
           Center(
             child: ElevatedButton(
               onPressed: () {
+                muscleList = <String>[];
+                buttonsSelect = List<int>.filled(7, 0);
+                equipList = [""];
+                equipChoice = List<int>.filled(20, 0);
+                movementList = [];
+                equipColorList = List.filled(20, Colors.white);
                 toMuscleSelection(context);
               },
               child: Text('Make a New Workout'),
