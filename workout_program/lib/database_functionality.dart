@@ -1,18 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-Future<void> createUserEntry() async {
-  FirebaseFirestore db = FirebaseFirestore.instance;
-  // Update one field, creating the document if it does not already exist.
-  final data = {"Name": null};
-  db
-      .collection("users")
-      .doc(await getUserID())
-      .set(data, SetOptions(merge: true));
-}
-
-//***************************************************************************
-// database functionality
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+// Get Exercises
 Future<List<dynamic>> getExercises(
     var userMuscleList, var userEquipmentList) async {
   var movementList = [];
@@ -47,17 +37,18 @@ isNewExercise(exerciseList, newExercise) {
   return !exerciseList.contains(newExercise);
 }
 
-//***************************************************************************
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 // save workouts functionality
 
 Future<void> saveWorkout(movementList) async {
   FirebaseFirestore db = FirebaseFirestore.instance;
-  var userID = await getUserID();
-  final data = {"Name": "testWrite02", "Movements": movementList};
-
-  db.collection("users").doc(userID).collection('workouts').add(data).then(
-      (documentSnapshot) =>
-          print("Added Data with ID: ${documentSnapshot.id}"));
+  db
+      .collection("users")
+      .doc(await getUserID())
+      .collection("workouts")
+      .doc()
+      .set({"Name": "testWrite02", "Movements": movementList},
+          SetOptions(merge: true));
 }
 
 Future<String> getUserID() async {

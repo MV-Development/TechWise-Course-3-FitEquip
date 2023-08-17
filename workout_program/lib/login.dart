@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:workout_program/database_functionality.dart';
 import 'register.dart';
 import 'muscle_select.dart';
 
@@ -19,7 +18,6 @@ class _LoginPage extends State<LoginPage> {
     try {
       /*final credential =*/ await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
-      createUserEntry();
       nextPage();
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
@@ -39,7 +37,6 @@ class _LoginPage extends State<LoginPage> {
       if (user == null) {
         print('user signed in');
       } else {
-        createUserEntry();
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => const PartSelect()));
       }

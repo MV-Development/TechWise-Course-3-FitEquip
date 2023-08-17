@@ -106,6 +106,7 @@ class _PartSelectState extends State<PartSelect> {
   ElevatedButton toEquip() {
     return ElevatedButton(
       onPressed: () {
+        //createUserEntry();
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => const EquipSelect()));
       },
