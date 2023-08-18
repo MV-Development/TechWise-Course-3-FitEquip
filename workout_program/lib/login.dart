@@ -2,6 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'register.dart';
 import 'muscle_select.dart';
+import 'reset.dart';
+import 'hub.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key, required this.title});
@@ -35,10 +37,10 @@ class _LoginPage extends State<LoginPage> {
   nextPage() async {
     FirebaseAuth.instance.authStateChanges().listen((User? user) {
       if (user == null) {
-        print('user signed in');
+        print('user signed out');
       } else {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const PartSelect()));
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => const HubPage()));
       }
     });
   }
@@ -120,6 +122,17 @@ class _LoginPage extends State<LoginPage> {
                     MaterialPageRoute(
                         builder: (context) => const RegisterPage()));
               }),
+          InkWell(
+              child: Text(
+                "Forgot Password?",
+                style: TextStyle(color: Colors.white),
+              ),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ResetPassword()));
+              })
         ])));
   }
 }

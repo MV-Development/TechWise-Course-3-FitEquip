@@ -11,6 +11,7 @@ class ShowExercises extends StatefulWidget {
 }
 
 class _ShowExercises extends State<ShowExercises> {
+  final nameController = TextEditingController();
   void toMuscleSelection(BuildContext context) {
     Navigator.push(
       context,
@@ -29,8 +30,8 @@ class _ShowExercises extends State<ShowExercises> {
             child:
                 Image.asset('assets/FitEquipLogo.png', width: 150, height: 100),
           ),
-          SizedBox(height: 18.0),
-          Center(
+          const SizedBox(height: 18.0),
+          const Center(
             child: Text(
               "RECOMMENDED EXERCISES:",
               style: TextStyle(
@@ -40,7 +41,21 @@ class _ShowExercises extends State<ShowExercises> {
               ),
             ),
           ),
-          SizedBox(height: 18),
+          const Center(
+            child: Text('Name this workout'),
+          ),
+          Padding(
+              padding: EdgeInsets.symmetric(horizontal: 500, vertical: 15),
+              child: TextField(
+                  controller: nameController,
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.white,
+                    border: OutlineInputBorder(),
+                    labelText: 'Name',
+                    hintText: 'Please enter a name',
+                  ))),
+          const SizedBox(height: 18),
           Center(
             child: Stack(
               alignment: Alignment.center,
@@ -58,7 +73,7 @@ class _ShowExercises extends State<ShowExercises> {
                       for (var item in movementList)
                         Text(
                           item,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 20,
                             color: Colors.black,
                             fontWeight: FontWeight.bold,
@@ -70,7 +85,7 @@ class _ShowExercises extends State<ShowExercises> {
               ],
             ),
           ),
-          SizedBox(height: 18),
+          const SizedBox(height: 18),
           Center(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -91,7 +106,7 @@ class _ShowExercises extends State<ShowExercises> {
                 ElevatedButton(
                   onPressed: () async {
                     print("Save button pressed");
-                    await saveWorkout(movementList);
+                    await saveWorkout(nameController.text, movementList);
                   },
                   child: Text('Save This Workout'),
                 ),

@@ -40,15 +40,14 @@ isNewExercise(exerciseList, newExercise) {
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 // save workouts functionality
 
-Future<void> saveWorkout(movementList) async {
+Future<void> saveWorkout(name, movementList) async {
   FirebaseFirestore db = FirebaseFirestore.instance;
   db
       .collection("users")
       .doc(await getUserID())
       .collection("workouts")
       .doc()
-      .set({"Name": "testWrite02", "Movements": movementList},
-          SetOptions(merge: true));
+      .set({"Name": name, "Movements": movementList}, SetOptions(merge: true));
 }
 
 Future<String> getUserID() async {
