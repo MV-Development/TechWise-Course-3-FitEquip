@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'register.dart';
-import 'muscle_select.dart';
 import 'reset.dart';
 import 'hub.dart';
 
@@ -18,7 +17,7 @@ class _LoginPage extends State<LoginPage> {
   var alertMessage = '';
   loginUser(email, password) async {
     try {
-      /*final credential =*/ await FirebaseAuth.instance
+      await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
       nextPage();
     } on FirebaseAuthException catch (e) {

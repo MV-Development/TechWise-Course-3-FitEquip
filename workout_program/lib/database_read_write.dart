@@ -2,6 +2,17 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+// Get User Data
+
+Future<String> getUserID() async {
+  return await getUID();
+}
+
+getUID() async {
+  return FirebaseAuth.instance.currentUser?.uid;
+}
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 // Get Exercises
 
 Future<List<dynamic>> getExercises(
@@ -51,14 +62,6 @@ Future<void> saveWorkout(name, movementList) async {
       .set({"Name": name, "Movements": movementList}, SetOptions(merge: true));
 }
 
-Future<String> getUserID() async {
-  return await getUID();
-}
-
-getUID() async {
-  return FirebaseAuth.instance.currentUser?.uid;
-}
-
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 // Get saved workouts
 
@@ -68,7 +71,7 @@ Future<List<dynamic>> getSavedWorkouts() async {
   await database
       .collection("users")
       .doc(await getUserID())
-      .collection("wourkouts")
+      .collection("workouts")
       .get()
       .then(
     (querySnapshot) {

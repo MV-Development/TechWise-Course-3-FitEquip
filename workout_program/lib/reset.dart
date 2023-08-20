@@ -14,8 +14,7 @@ class _ResetPassword extends State<ResetPassword> {
   var alertMessage = '';
   sendReset(email) async {
     try {
-      final resEmail =
-          await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-notfound') {
         setState(() {
@@ -68,7 +67,6 @@ class _ResetPassword extends State<ResetPassword> {
                   const EdgeInsets.symmetric(horizontal: 500, vertical: 15),
               child: ElevatedButton(
                 onPressed: () {
-                  print('button pressed!');
                   sendReset(emailController.text);
                 },
                 child: const Text(

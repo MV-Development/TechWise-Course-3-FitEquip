@@ -35,7 +35,9 @@ class _HubPage extends State<HubPage> {
           child: Text('Make a New Workout'),
         ),
         ElevatedButton(
-            onPressed: () {
+            onPressed: () async {
+              await getSavedWorkoutsList();
+              print(savedWorkouts);
               //toSavedWorkouts(context);
             },
             child: Text('View Saved Workouts'))
