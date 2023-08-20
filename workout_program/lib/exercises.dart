@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'database_read_write.dart';
-import 'muscle_select.dart';
 import 'globals.dart';
-import 'hub.dart';
+import 'ui_navigation.dart';
 
 class ShowExercises extends StatefulWidget {
   const ShowExercises({super.key});
@@ -13,12 +12,6 @@ class ShowExercises extends StatefulWidget {
 
 class _ShowExercises extends State<ShowExercises> {
   final nameController = TextEditingController();
-  void toMuscleSelection(BuildContext context) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => const PartSelect()),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -112,8 +105,7 @@ class _ShowExercises extends State<ShowExercises> {
                   ElevatedButton(
                     onPressed: () {
                       clearSelections();
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => HubPage()));
+                      toHub(context);
                     },
                     child: Text('Home'),
                   )
@@ -125,13 +117,4 @@ class _ShowExercises extends State<ShowExercises> {
       ),
     );
   }
-}
-
-void clearSelections() {
-  muscleList = <String>[];
-  buttonsSelect = List<int>.filled(7, 0);
-  equipList = [""];
-  equipChoice = List<int>.filled(20, 0);
-  movementList = [];
-  equipColorList = List.filled(20, Colors.white);
 }

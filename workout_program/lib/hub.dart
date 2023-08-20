@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'database_read_write.dart';
 import 'globals.dart';
-import 'muscle_select.dart';
+import 'ui_navigation.dart';
 
 class HubPage extends StatefulWidget {
   const HubPage({super.key});
@@ -10,13 +10,6 @@ class HubPage extends StatefulWidget {
 }
 
 class _HubPage extends State<HubPage> {
-  void toMuscleSelection(BuildContext context) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => const PartSelect()),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

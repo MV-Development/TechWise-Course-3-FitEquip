@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:workout_program/globals.dart';
 import 'icon_generator.dart';
-import 'equip_select.dart';
+import 'ui_navigation.dart';
 
 class PartSelect extends StatefulWidget {
   const PartSelect({super.key});
@@ -16,8 +16,9 @@ class _PartSelectState extends State<PartSelect> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        body: SingleChildScrollView(
+            child:
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Padding(
         padding: const EdgeInsets.fromLTRB(2.0, 0, 2.0, 2.0),
         child: Image.asset('assets/FitEquipLogo.png', width: 150, height: 100),
@@ -107,8 +108,7 @@ class _PartSelectState extends State<PartSelect> {
   ElevatedButton toEquip() {
     return ElevatedButton(
       onPressed: () {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const EquipSelect()));
+        toEquipment(context);
       },
       child: const Text('Next'),
     );
