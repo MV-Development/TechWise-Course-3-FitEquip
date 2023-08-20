@@ -65,7 +65,7 @@ Future<void> saveWorkout(name, movementList) async {
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 // Get saved workouts
 
-Future<List<dynamic>> getSavedWorkouts() async {
+Future<List<dynamic>> getSavedWorkoutNames() async {
   var workouts = [];
   FirebaseFirestore database = FirebaseFirestore.instance;
   await database
@@ -82,4 +82,20 @@ Future<List<dynamic>> getSavedWorkouts() async {
     onError: (e) => print("Error completing: $e"),
   );
   return workouts;
+}
+
+/*Future<List<Dynamic>>*/ void getSavedWorkoutMovements(String name) async {
+  //List<String> movements = [];
+  FirebaseFirestore database = FirebaseFirestore.instance;
+  final workouts = database
+      .collection("users")
+      .doc(await getUserID())
+      .collection("workouts");
+
+  await workouts.where("Name" == name).get().then(
+    (querySnapshot) {
+      print(querySnapshot.toString());
+    },
+    onError: (e) => print("Error completing: $e"),
+  );
 }

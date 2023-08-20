@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:workout_program/uI_navigation.dart';
 import 'icon_generator.dart';
-import 'exercises.dart';
 import 'globals.dart';
 import 'database_read_write.dart';
 
@@ -15,8 +15,9 @@ class _EquipSelect extends State<EquipSelect> {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-      body: SingleChildScrollView (
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        body: SingleChildScrollView(
+            child:
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Padding(
         padding: const EdgeInsets.fromLTRB(2.0, 0, 2.0, 2.0),
         child: Image.asset('assets/FitEquipLogo.png', width: 150, height: 100),
@@ -107,15 +108,10 @@ class _EquipSelect extends State<EquipSelect> {
   ElevatedButton toExercises() {
     return ElevatedButton(
       onPressed: () async {
-        getExercisesList(muscleList, equipList, context);
+        movementList = await getExercises(muscleList, equipList);
+        toExerciseList(context);
       },
       child: const Text('Next'),
     );
   }
-}
-
-getExercisesList(var userMuscleList, var userEquipmentList, var context) async {
-  movementList = await getExercises(userMuscleList, userEquipmentList);
-  Navigator.push(
-      context, MaterialPageRoute(builder: (context) => ShowExercises()));
 }

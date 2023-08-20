@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'globals.dart';
+import 'hub.dart';
 import 'muscle_select.dart';
 import 'equip_select.dart';
-import 'hub.dart';
-import 'globals.dart';
+import 'exercises.dart';
 
 void clearSelections() {
   muscleList = <String>[];
@@ -27,6 +28,11 @@ void toHub(BuildContext context) {
 void toEquipment(BuildContext context) {
   Navigator.push(
       context, MaterialPageRoute(builder: (context) => const EquipSelect()));
+}
+
+toExerciseList(BuildContext context) {
+  Navigator.push(
+      context, MaterialPageRoute(builder: (context) => ShowExercises()));
 }
 
 /*
