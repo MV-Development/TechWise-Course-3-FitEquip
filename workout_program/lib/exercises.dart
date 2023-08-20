@@ -21,8 +21,10 @@ class _ShowExercises extends State<ShowExercises> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-      body: Column(
+      body: SingleChildScrollView(
+      child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
@@ -45,7 +47,7 @@ class _ShowExercises extends State<ShowExercises> {
             child: Text('Name this workout'),
           ),
           Padding(
-              padding: EdgeInsets.symmetric(horizontal: 500, vertical: 15),
+              padding: EdgeInsets.symmetric(horizontal: screenWidth*0.1, vertical: 15),
               child: TextField(
                   controller: nameController,
                   decoration: InputDecoration(
@@ -114,7 +116,7 @@ class _ShowExercises extends State<ShowExercises> {
             ),
           ),
         ],
-      ),
+      ),),
     );
   }
 }
