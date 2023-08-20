@@ -16,7 +16,8 @@ class _PartSelectState extends State<PartSelect> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      body: SingleChildScrollView(
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Padding(
         padding: const EdgeInsets.fromLTRB(2.0, 0, 2.0, 2.0),
         child: Image.asset('assets/FitEquipLogo.png', width: 150, height: 100),
@@ -43,7 +44,7 @@ class _PartSelectState extends State<PartSelect> {
           toEquip()
         ],
       ))
-    ]));
+    ])));
   }
 
   Column muscleSelect() {

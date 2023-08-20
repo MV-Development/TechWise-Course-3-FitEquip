@@ -13,8 +13,10 @@ class EquipSelect extends StatefulWidget {
 class _EquipSelect extends State<EquipSelect> {
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-        body: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      body: SingleChildScrollView (
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Padding(
         padding: const EdgeInsets.fromLTRB(2.0, 0, 2.0, 2.0),
         child: Image.asset('assets/FitEquipLogo.png', width: 150, height: 100),
@@ -41,15 +43,16 @@ class _EquipSelect extends State<EquipSelect> {
           toExercises(),
         ],
       ))
-    ]));
+    ])));
   }
 
   Column exerciseList() {
     var icons = IconGenerator();
     List<Widget> rows = [];
-    for (int i = 0; i < icons.equipIcons.length; i += 6) {
+    int numOfIcons = MediaQuery.of(context).size.width > 750 ? 6 : 4;
+    for (int i = 0; i < icons.equipIcons.length; i += numOfIcons) {
       List<Widget> rowWidgets = [];
-      for (int j = i; j < i + 6 && j < icons.equipIcons.length; j++) {
+      for (int j = i; j < i + numOfIcons && j < icons.equipIcons.length; j++) {
         rowWidgets.add(equipmentIcons(
             icons.geteURL(j), icons.geteTag(j), j, equipColorList[j]));
       }
