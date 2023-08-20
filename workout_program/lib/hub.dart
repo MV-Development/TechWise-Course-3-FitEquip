@@ -34,6 +34,7 @@ class _HubPage extends State<HubPage> {
           },
           child: Text('Make a New Workout'),
         ),
+        SizedBox(width: 18),
         ElevatedButton(
             onPressed: () async {
               await getSavedWorkoutsList();

@@ -113,6 +113,7 @@ class _ShowExercises extends State<ShowExercises> {
                   },
                   child: Text('Save This Workout'),
                 ),
+                SizedBox(width: 18),
                 ElevatedButton(
                   onPressed: () {
                     Navigator.push(context,
