@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:workout_program/session_data.dart';
+import 'package:workout_program/globals.dart';
 import 'icon_generator.dart';
 import 'equip_select.dart';
 
@@ -106,7 +106,6 @@ class _PartSelectState extends State<PartSelect> {
   ElevatedButton toEquip() {
     return ElevatedButton(
       onPressed: () {
-        //createUserEntry();
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => const EquipSelect()));
       },

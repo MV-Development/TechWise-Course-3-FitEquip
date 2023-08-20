@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'database_functionality.dart';
+import 'database_read_write.dart';
 import 'muscle_select.dart';
-import 'session_data.dart';
+import 'globals.dart';
 
 class ShowExercises extends StatefulWidget {
   const ShowExercises({super.key});

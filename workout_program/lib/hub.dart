@@ -1,10 +1,7 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:workout_program/main.dart';
-import 'register.dart';
+import 'database_read_write.dart';
+import 'globals.dart';
 import 'muscle_select.dart';
-import 'reset.dart';
-import 'session_data.dart';
 
 class HubPage extends StatefulWidget {
   const HubPage({super.key});
@@ -33,12 +30,6 @@ class _HubPage extends State<HubPage> {
           child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
         ElevatedButton(
           onPressed: () {
-            muscleList = <String>[];
-            buttonsSelect = List<int>.filled(7, 0);
-            equipList = [""];
-            equipChoice = List<int>.filled(20, 0);
-            movementList = [];
-            equipColorList = List.filled(20, Colors.white);
             toMuscleSelection(context);
           },
           child: Text('Make a New Workout'),
@@ -51,4 +42,9 @@ class _HubPage extends State<HubPage> {
       ]))
     ]));
   }
+}
+
+getSavedWorkoutsList() async {
+  savedWorkouts = await getSavedWorkouts();
+  //Navigator.push(context, MaterialPageRoute(builder: (context) => ShowSavedWorkouts()));
 }

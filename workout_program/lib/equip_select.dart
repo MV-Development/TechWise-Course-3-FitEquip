@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'icon_generator.dart';
 import 'exercises.dart';
-import 'session_data.dart';
-import 'database_functionality.dart';
+import 'globals.dart';
+import 'database_read_write.dart';
 
 class EquipSelect extends StatefulWidget {
   const EquipSelect({super.key});
@@ -112,10 +112,7 @@ class _EquipSelect extends State<EquipSelect> {
 }
 
 getExercisesList(var userMuscleList, var userEquipmentList, var context) async {
-  Future<List<dynamic>> tempList =
-      getExercises(userMuscleList, userEquipmentList);
-  List<dynamic> tList = await tempList;
-  movementList = tList;
+  movementList = await getExercises(userMuscleList, userEquipmentList);
   Navigator.push(
       context, MaterialPageRoute(builder: (context) => ShowExercises()));
 }
