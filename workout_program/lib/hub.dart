@@ -23,6 +23,7 @@ class _HubPage extends State<HubPage> {
           child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
         ElevatedButton(
           onPressed: () {
+            clearSelections();
             toMuscleSelection(context);
           },
           child: Text('Make a New Workout'),

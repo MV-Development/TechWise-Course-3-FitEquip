@@ -6,7 +6,7 @@ import 'equip_select.dart';
 import 'exercises.dart';
 
 void clearSelections() {
-  muscleList = <String>[];
+  muscleList = [];
   buttonsSelect = List<int>.filled(7, 0);
   equipList = [""];
   equipChoice = List<int>.filled(20, 0);
