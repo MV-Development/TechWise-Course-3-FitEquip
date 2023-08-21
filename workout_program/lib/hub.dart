@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'database_read_write.dart';
-//import 'globals.dart';
+import 'globals.dart';
 import 'ui_navigation.dart';
+import 'saved_workouts.dart';
 
 class HubPage extends StatefulWidget {
   const HubPage({super.key});
@@ -31,8 +32,8 @@ class _HubPage extends State<HubPage> {
         SizedBox(width: 18),
         ElevatedButton(
             onPressed: () async {
-              print(await getSavedWorkoutNames());
-              //toSavedWorkouts(context);
+              savedWorkoutsList = await getSavedWorkoutNames();
+              toSavedWorkouts(context);
             },
             child: Text('View Saved Workouts'))
       ]))

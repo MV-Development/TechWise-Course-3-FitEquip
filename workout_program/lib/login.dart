@@ -73,7 +73,8 @@ class _LoginPage extends State<LoginPage> {
             ),
           ),
           Padding(
-              padding: EdgeInsets.symmetric(horizontal: screenWidth*0.1, vertical: 15),
+              padding: EdgeInsets.symmetric(
+                  horizontal: screenWidth * 0.1, vertical: 15),
               child: TextField(
                   controller: emailController,
                   decoration: InputDecoration(
@@ -84,7 +85,8 @@ class _LoginPage extends State<LoginPage> {
                     hintText: 'Enter valid email, ex: abcd@gmail.com',
                   ))),
           Padding(
-              padding: EdgeInsets.symmetric(horizontal: screenWidth*0.1, vertical: 15),
+              padding: EdgeInsets.symmetric(
+                  horizontal: screenWidth * 0.1, vertical: 15),
               child: TextField(
                   controller: passController,
                   obscureText: true,
@@ -99,8 +101,8 @@ class _LoginPage extends State<LoginPage> {
                   ))),
           Text(alertMessage),
           Padding(
-              padding:
-                  EdgeInsets.symmetric(horizontal: screenWidth*0.25, vertical: 15),
+              padding: EdgeInsets.symmetric(
+                  horizontal: screenWidth * 0.25, vertical: 15),
               child: ElevatedButton(
                 onPressed: () {
                   print('button pressed!');

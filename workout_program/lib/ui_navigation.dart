@@ -4,6 +4,7 @@ import 'hub.dart';
 import 'muscle_select.dart';
 import 'equip_select.dart';
 import 'exercises.dart';
+import 'saved_workouts.dart';
 
 void clearSelections() {
   muscleList = [];
@@ -35,9 +36,7 @@ toExerciseList(BuildContext context) {
       context, MaterialPageRoute(builder: (context) => ShowExercises()));
 }
 
-/*
 void toSavedWorkouts(BuildContext context) {
   Navigator.push(
       context, MaterialPageRoute(builder: (context) => const SavedWorkouts()));
 }
-*/

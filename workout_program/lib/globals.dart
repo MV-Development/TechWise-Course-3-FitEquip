@@ -6,4 +6,4 @@ var equipList = [""];
 var equipChoice = List<int>.filled(20, 0);
 var movementList = [];
 var equipColorList = List.filled(20, Colors.white);
-var savedWorkouts = [];
+var savedWorkoutsList = [];
