@@ -50,7 +50,7 @@ class _ShowExercises extends State<ShowExercises> {
                       fillColor: Colors.white,
                       border: OutlineInputBorder(),
                       labelText: 'Name',
-                      hintText: 'Please enter a name',
+                      hintText: 'Name This Workout',
                     ))),
             const SizedBox(height: 18),
             Center(
