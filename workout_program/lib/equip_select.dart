@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:workout_program/uI_navigation.dart';
+import 'package:workout_program/ui_navigation.dart';
 import 'icon_generator.dart';
 import 'globals.dart';
 import 'database_read_write.dart';
