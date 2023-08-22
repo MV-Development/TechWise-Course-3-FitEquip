@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'database_read_write.dart';
 import 'globals.dart';
+//import 'ui_assets.dart';
 import 'ui_navigation.dart';
 
 class SavedWorkouts extends StatefulWidget {
@@ -13,7 +13,7 @@ class SavedWorkouts extends StatefulWidget {
 class _SavedWorkouts extends State<SavedWorkouts> {
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
+//    final screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
         body: SingleChildScrollView(
             child: Column(
@@ -66,13 +66,14 @@ class _SavedWorkouts extends State<SavedWorkouts> {
         ),
         const SizedBox(height: 18),
         Center(
-          child: ElevatedButton(
-            onPressed: () {
-              clearSelections();
-              toHub(context);
-            },
-            child: Text('Home'),
-          ),
+          child:
+              //toHubButton(context)
+              ElevatedButton(
+                  onPressed: () {
+                    clearSelections();
+                    toHub(context);
+                  },
+                  child: const Text('Home')),
         )
       ],
     )));

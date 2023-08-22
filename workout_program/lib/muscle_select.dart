@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:workout_program/globals.dart';
 import 'icon_generator.dart';
 import 'ui_navigation.dart';
+//import 'globals.dart';
+//import 'ui_assets.dart';
 
 class PartSelect extends StatefulWidget {
   const PartSelect({super.key});
@@ -42,7 +44,13 @@ class _PartSelectState extends State<PartSelect> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [muscleSelect()]),
           SizedBox(height: 18),
-          toEquip()
+          //toEquipButton(context)
+          ElevatedButton(
+            onPressed: () {
+              toEquipment(context);
+            },
+            child: const Text('Next'),
+          )
         ],
       ))
     ])));
@@ -102,15 +110,6 @@ class _PartSelectState extends State<PartSelect> {
               color: Colors.white,
             )),
       ],
-    );
-  }
-
-  ElevatedButton toEquip() {
-    return ElevatedButton(
-      onPressed: () {
-        toEquipment(context);
-      },
-      child: const Text('Next'),
     );
   }
 }

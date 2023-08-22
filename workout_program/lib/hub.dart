@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'database_read_write.dart';
-import 'globals.dart';
 import 'ui_navigation.dart';
-import 'saved_workouts.dart';
+import 'globals.dart';
+//import 'ui_assets.dart';
+//import 'saved_workouts.dart';
 
 class HubPage extends StatefulWidget {
   const HubPage({super.key});
@@ -22,20 +23,22 @@ class _HubPage extends State<HubPage> {
       )),
       Center(
           child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+        //toMuscleSelectButton(context)
         ElevatedButton(
-          onPressed: () {
-            clearSelections();
-            toMuscleSelection(context);
-          },
-          child: Text('Make a New Workout'),
-        ),
+            onPressed: () {
+              clearSelections();
+              toMuscleSelection(context);
+            },
+            child: const Text('New Workout')),
         SizedBox(width: 18),
+        //toSavedWorkoutsButton(context)
         ElevatedButton(
             onPressed: () async {
               savedWorkoutsList = await getSavedWorkoutNames();
               toSavedWorkouts(context);
             },
-            child: Text('View Saved Workouts'))
+            child: const Text('View Saved Workouts'))
+        //SizedBox(width: 18),
       ]))
     ]));
   }

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:workout_program/ui_navigation.dart';
 import 'icon_generator.dart';
 import 'globals.dart';
+import 'ui_navigation.dart';
 import 'database_read_write.dart';
+//import 'ui_assets.dart';
 
 class EquipSelect extends StatefulWidget {
   const EquipSelect({super.key});
@@ -13,7 +14,7 @@ class EquipSelect extends StatefulWidget {
 class _EquipSelect extends State<EquipSelect> {
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
+//    final screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
         body: SingleChildScrollView(
             child:
@@ -41,7 +42,14 @@ class _EquipSelect extends State<EquipSelect> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [exerciseList()]),
           SizedBox(height: 18),
-          toExercises(),
+          //toExercisesButton(context)
+          ElevatedButton(
+            onPressed: () async {
+              movementList = await getExercises(muscleList, equipList);
+              toExerciseList(context);
+            },
+            child: const Text('Next'),
+          ),
         ],
       ))
     ])));
@@ -102,16 +110,6 @@ class _EquipSelect extends State<EquipSelect> {
               color: Colors.white,
             )),
       ],
-    );
-  }
-
-  ElevatedButton toExercises() {
-    return ElevatedButton(
-      onPressed: () async {
-        movementList = await getExercises(muscleList, equipList);
-        toExerciseList(context);
-      },
-      child: const Text('Next'),
     );
   }
 }

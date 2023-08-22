@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'database_read_write.dart';
-import 'globals.dart';
+//import 'package:workout_program/ui_assets.dart';
 import 'ui_navigation.dart';
+import 'globals.dart';
+import 'database_read_write.dart';
 
 class ShowExercises extends StatefulWidget {
   const ShowExercises({super.key});
@@ -87,29 +88,30 @@ class _ShowExercises extends State<ShowExercises> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  //toMuscleSelectButton(context),
                   ElevatedButton(
-                    onPressed: () {
-                      clearSelections();
-                      toMuscleSelection(context);
-                    },
-                    child: Text('Make a New Workout'),
-                  ),
+                      onPressed: () {
+                        clearSelections();
+                        toMuscleSelection(context);
+                      },
+                      child: const Text('New Workout')),
                   SizedBox(width: 18),
+                  //saveWorkoutButton(nameController)
                   ElevatedButton(
                     onPressed: () async {
-                      print("Save button pressed");
+                      //print("Save button pressed");
                       await saveWorkout(nameController.text, movementList);
                     },
-                    child: Text('Save This Workout'),
+                    child: const Text('Save This Workout'),
                   ),
                   SizedBox(width: 18),
+                  //toHubButton(context)
                   ElevatedButton(
-                    onPressed: () {
-                      clearSelections();
-                      toHub(context);
-                    },
-                    child: Text('Home'),
-                  )
+                      onPressed: () {
+                        clearSelections();
+                        toHub(context);
+                      },
+                      child: const Text('Home'))
                 ],
               ),
             ),
